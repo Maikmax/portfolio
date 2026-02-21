@@ -608,6 +608,42 @@
     .mt-24 { margin-top: 24px; }
     .mt-32 { margin-top: 32px; }
 
+    /* ══════════════════════════════════════
+       LANGUAGE TOGGLE
+    ══════════════════════════════════════ */
+    #lang-toggle {
+      position: fixed;
+      top: 14px; right: 80px;
+      z-index: 9999;
+      background: var(--card2);
+      border: 1px solid var(--border2);
+      border-radius: 20px;
+      display: flex;
+      overflow: hidden;
+    }
+    #lang-toggle button {
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-size: 0.75rem;
+      font-weight: 700;
+      font-family: 'Inter', sans-serif;
+      padding: 5px 12px;
+      cursor: pointer;
+      letter-spacing: 0.05em;
+      transition: all 0.2s;
+    }
+    #lang-toggle button.active {
+      background: var(--gold);
+      color: var(--black);
+      border-radius: 20px;
+    }
+    #lang-toggle button:hover:not(.active) { color: var(--white); }
+
+    /* Hide PT or EN elements based on lang */
+    body.lang-en [data-lang="pt"] { display: none !important; }
+    body.lang-pt [data-lang="en"] { display: none !important; }
+
     /* 3-col info grid */
     .info-grid {
       display: grid;
@@ -674,6 +710,12 @@
 <!-- BACK TO TOP -->
 <button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
+<!-- LANGUAGE TOGGLE -->
+<div id="lang-toggle">
+  <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+  <button id="btn-pt" onclick="setLang('pt')">PT</button>
+</div>
+
 <!-- ══════════════════════════════════════
      HERO
 ══════════════════════════════════════ -->
@@ -685,8 +727,11 @@
     </div>
     <div class="hero-flags">🇧🇷 → 🇮🇪</div>
     <h1>Marcus Paula</h1>
-    <div class="hero-subtitle">
+    <div class="hero-subtitle" data-lang="en">
       IT Engineer — EMEA &nbsp;·&nbsp; Cybersecurity Specialist &nbsp;·&nbsp; TikTok EMEA &nbsp;·&nbsp; Dublin, Ireland
+    </div>
+    <div class="hero-subtitle" data-lang="pt">
+      Engenheiro de TI — EMEA &nbsp;·&nbsp; Especialista em Cibersegurança &nbsp;·&nbsp; TikTok EMEA &nbsp;·&nbsp; Dublin, Irlanda
     </div>
     <div class="hero-badges">
       <span class="badge">20+ Years in IT</span>
@@ -730,16 +775,26 @@
 
 <!-- NAV -->
 <nav id="main-nav">
-  <a href="#about">About</a>
-  <a href="#brings">What I Bring</a>
-  <a href="#tiktok">TikTok EMEA</a>
-  <a href="#timeline">Timeline</a>
-  <a href="#skills">Skills</a>
-  <a href="#certifications">Certifications</a>
-  <a href="#github">GitHub</a>
-  <a href="#ctf">CTF</a>
-  <a href="#recommendations">Recommendations</a>
-  <a href="#business">ROI &amp; KPI</a>
+  <a href="#about"          data-lang="en">About</a>
+  <a href="#about"          data-lang="pt">Sobre</a>
+  <a href="#brings"         data-lang="en">What I Bring</a>
+  <a href="#brings"         data-lang="pt">O Que Ofereço</a>
+  <a href="#tiktok"         data-lang="en">TikTok EMEA</a>
+  <a href="#tiktok"         data-lang="pt">TikTok EMEA</a>
+  <a href="#timeline"       data-lang="en">Timeline</a>
+  <a href="#timeline"       data-lang="pt">Carreira</a>
+  <a href="#skills"         data-lang="en">Skills</a>
+  <a href="#skills"         data-lang="pt">Habilidades</a>
+  <a href="#certifications" data-lang="en">Certifications</a>
+  <a href="#certifications" data-lang="pt">Certificações</a>
+  <a href="#github"         data-lang="en">GitHub</a>
+  <a href="#github"         data-lang="pt">GitHub</a>
+  <a href="#ctf"            data-lang="en">CTF</a>
+  <a href="#ctf"            data-lang="pt">CTF</a>
+  <a href="#recommendations" data-lang="en">Recommendations</a>
+  <a href="#recommendations" data-lang="pt">Recomendações</a>
+  <a href="#business"       data-lang="en">ROI &amp; KPI</a>
+  <a href="#business"       data-lang="pt">ROI &amp; KPI</a>
 </nav>
 
 <!-- ══════════════════════════════════════
@@ -750,13 +805,17 @@
     <div class="section-header">
       <div class="section-icon">👤</div>
       <div>
-        <div class="section-title">About Me</div>
-        <div class="section-sub">Professional Summary</div>
+        <div class="section-title" data-lang="en">About Me</div>
+        <div class="section-title" data-lang="pt">Sobre Mim</div>
+        <div class="section-sub" data-lang="en">Professional Summary</div>
+        <div class="section-sub" data-lang="pt">Resumo Profissional</div>
       </div>
     </div>
     <div class="card">
-      <p>Senior IT Engineer and Cybersecurity Specialist with <span class="hl">20+ years of experience</span> — starting in IT support in Brazil in 2004 and evolving into enterprise IT operations and security architecture in Ireland.</p>
-      <p>Currently working at <span class="hl">TikTok EMEA in Dublin</span> as IT Engineer, supporting the EMEA IT team across 5,000+ devices in 7 countries. I contribute to end-to-end IT operations: asset management, security compliance, new hire onboarding, and infrastructure monitoring with Grafana. I build processes, fix what's broken, and deliver measurable results.</p>
+      <p data-lang="en">Senior IT Engineer and Cybersecurity Specialist with <span class="hl">20+ years of experience</span> — starting in IT support in Brazil in 2004 and evolving into enterprise IT operations and security architecture in Ireland.</p>
+      <p data-lang="en">Currently working at <span class="hl">TikTok EMEA in Dublin</span> as IT Engineer, supporting the EMEA IT team across 5,000+ devices in 7 countries. I contribute to end-to-end IT operations: asset management, security compliance, new hire onboarding, and infrastructure monitoring with Grafana. I build processes, fix what's broken, and deliver measurable results.</p>
+      <p data-lang="pt">Engenheiro de TI Sênior e Especialista em Cibersegurança com <span class="hl">mais de 20 anos de experiência</span> — começando em suporte técnico no Brasil em 2004 e evoluindo para operações de TI enterprise e arquitetura de segurança na Irlanda.</p>
+      <p data-lang="pt">Atualmente trabalho na <span class="hl">TikTok EMEA em Dublin</span> como Engenheiro de TI, apoiando a equipe de TI da EMEA com mais de 5.000 dispositivos em 7 países. Contribuo com operações de ponta a ponta: gestão de ativos, conformidade de segurança, onboarding de novos colaboradores e monitoramento de infraestrutura com Grafana. Construo processos, resolvo problemas e entrego resultados mensuráveis.</p>
       <div class="tags">
         <span class="tag tag-gold">IT Engineer — EMEA</span>
         <span class="tag tag-gold">Zero Trust Architecture</span>
@@ -1558,6 +1617,18 @@
     el.style.transition = 'opacity 0.5s ease, transform 0.5s ease, border-color 0.25s';
     fadeObserver.observe(el);
   });
+
+  /* ── Language Toggle ── */
+  function setLang(lang) {
+    document.body.className = document.body.className
+      .replace(/lang-\w+/g, '').trim() + ' lang-' + lang;
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('btn-pt').classList.toggle('active', lang === 'pt');
+    localStorage.setItem('mp-lang', lang);
+  }
+  // Load saved preference, default EN
+  const savedLang = localStorage.getItem('mp-lang') || 'en';
+  setLang(savedLang);
 </script>
 
 </body>
