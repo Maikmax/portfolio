@@ -1619,16 +1619,217 @@
   });
 
   /* ── Language Toggle ── */
-  function setLang(lang) {
+  const translations = {
+    // NAV / HERO already handled via data-lang HTML
+    // Section titles & subtitles
+    'About Me':                         'Sobre Mim',
+    'Professional Summary':             'Resumo Profissional',
+    'What I Bring':                     'O Que Ofereço',
+    'Four pillars that define my professional value': 'Quatro pilares que definem meu valor profissional',
+    'TikTok EMEA — IT Engineer':        'TikTok EMEA — Engenheiro de TI',
+    '20-Year Career Timeline':          'Linha do Tempo — 20 Anos de Carreira',
+    'Brazil (2004) → Ireland (2012) → TikTok EMEA (2022)': 'Brasil (2004) → Irlanda (2012) → TikTok EMEA (2022)',
+    'Technical Skills':                 'Habilidades Técnicas',
+    'Proficiency levels based on real professional use': 'Níveis baseados em uso profissional real',
+    'Certifications — 42+':             'Certificações — 42+',
+    'Security · AWS · DFIR · Compliance · TikTok Enterprise': 'Segurança · AWS · DFIR · Conformidade · TikTok Enterprise',
+    'GitHub Portfolio':                 'Portfólio GitHub',
+    'CTF & Offensive Security':         'CTF & Segurança Ofensiva',
+    'Hands-on cybersecurity practice beyond certifications': 'Prática de cibersegurança além das certificações',
+    'Recommendations':                  'Recomendações',
+    '15 received · 8 given · LinkedIn verified': '15 recebidas · 8 dadas · verificadas no LinkedIn',
+    'Business & Management Alignment':  'Alinhamento com Negócios & Gestão',
+    'Technology that speaks the language of business — ROI · KPI · RTO · Compliance': 'Tecnologia que fala a linguagem do negócio — ROI · KPI · RTO · Conformidade',
+    // Info cards
+    'Contact':        'Contato',
+    'Profiles':       'Perfis',
+    'Open To':        'Aberto a',
+    // Open To items
+    'IT Manager':                         'Gerente de TI',
+    'IT Operations Lead (target role)':   'IT Operations Lead (objetivo)',
+    'Security Operations':                'Operações de Segurança',
+    'IAM Lead · EMEA IT':                 'Líder IAM · TI EMEA',
+    // What I Bring cards
+    'I Build From Scratch':              'Construo do Zero',
+    'No playbook? No problem. I built TikTok EMEA\'s entire asset management programme from zero — 99% visibility across 5,000+ devices in 3 sites.':
+      'Sem manual? Sem problema. Construí o programa completo de gestão de ativos da TikTok EMEA do zero — 99% de visibilidade em 5.000+ dispositivos em 3 sites.',
+    'I Deliver Measurable Results':      'Entrego Resultados Mensuráveis',
+    'Every project I lead ends with numbers. 50% cost reduction. 80% efficiency gain. 90% quality improvement. Results, not stories.':
+      'Todo projeto que lidero termina com números. 50% de redução de custos. 80% de ganho de eficiência. 90% de melhoria de qualidade. Resultados, não histórias.',
+    'I Operate at Scale':                'Opero em Escala',
+    '7 countries, 5,000+ devices, weekly EMEA syncs. I manage multi-site IT operations with the same precision as single-site work.':
+      '7 países, 5.000+ dispositivos, reuniões semanais EMEA. Gerencio operações de TI multi-site com a mesma precisão de um único site.',
+    'Security Is My Foundation':         'Segurança é Minha Base',
+    'Zero Trust certified. NCI Postgrad DFIR. 4th place CTF solo. 42+ certs. Security isn\'t a layer I add — it\'s how I think from day one.':
+      'Certificado em Zero Trust. Pós-grad NCI em DFIR. 4º lugar no CTF solo. 42+ certs. Segurança não é uma camada que adiciono — é como penso desde o primeiro dia.',
+    // TikTok table headers
+    'Full Scope of Responsibilities':   'Escopo Completo de Responsabilidades',
+    'Area':                              'Área',
+    'Full Ownership':                    'Responsabilidade Total',
+    // TikTok metrics
+    'Asset Visibility':                  'Visibilidade de Ativos',
+    '5,000+ devices':                    '5.000+ dispositivos',
+    'Process Cost':                      'Custo de Processo',
+    '& Time Reduction':                  'e Redução de Tempo',
+    'Manager Efficiency':                'Eficiência dos Gestores',
+    'Improvement':                       'Melhoria',
+    'MCU Server':                        'Servidor MCU',
+    'Effectiveness':                     'Efetividade',
+    'User Image':                        'Qualidade de Imagem',
+    'Quality Gain':                      'para Usuários',
+    'Countries':                         'Países',
+    'Covered':                           'Cobertos',
+    // Timeline
+    'Dublin, Ireland · Current':         'Dublin, Irlanda · Atual',
+    'Contract → Full-time':              'Contrato → Full-time',
+    'Started as contract IT Infrastructure Engineer (Jan 2022), promoted to full-time IT Engineer (Mar 2023). Full ownership of EMEA IT operations across 7 countries and 5,000+ devices. Built asset management process from scratch, led MCU server upgrade, managed compliance and documentation for the entire region.':
+      'Iniciou como Engenheiro de Infraestrutura de TI contratado (jan/2022), promovido a Engenheiro de TI full-time (mar/2023). Responsabilidade integral pelas operações de TI da EMEA em 7 países e 5.000+ dispositivos. Criou processo de gestão de ativos do zero, liderou upgrade do servidor MCU e geriu conformidade e documentação para toda a região.',
+    'Physical and cyber security integration at TikTok\'s Dublin centre. GRC, GDPR, access control, CCTV and incident response. First direct exposure to TikTok enterprise operations — led to full IT engineering role.':
+      'Integração de segurança física e cibernética no centro da TikTok em Dublin. GRC, GDPR, controle de acesso, CCTV e resposta a incidentes. Primeira exposição direta às operações enterprise da TikTok — levou à função de Engenheiro de TI.',
+    'Advisory on GRC, GDPR compliance, VPN architecture, risk management and incident response for a real estate investment firm. Applied NCI academic knowledge in a live commercial environment.':
+      'Consultoria em GRC, conformidade GDPR, arquitetura VPN, gestão de riscos e resposta a incidentes para firma de investimento imobiliário. Aplicação do conhecimento acadêmico da NCI em ambiente comercial real.',
+    'Specialisation in Cyber/Computer Forensics and Counterterrorism. Covered network security, pen testing, digital forensics, malware analysis (REMnux, YARA), memory forensics, eDiscovery, iOS/Android/Windows forensics, Wireshark, NetworkMiner and incident response simulations.':
+      'Especialização em Forense Digital/Computacional e Contraterrorismo. Cobriu segurança de redes, pen testing, forense digital, análise de malware (REMnux, YARA), forense de memória, eDiscovery, forense iOS/Android/Windows, Wireshark, NetworkMiner e simulações de resposta a incidentes.',
+    'Physical and information security at two major enterprise sites. Access control, CCTV management, incident reporting and multicultural team operations across Facebook and Ford facilities.':
+      'Segurança física e de informação em dois grandes sites enterprise. Controle de acesso, gestão de CCTV, reporte de incidentes e operações multiculturais nas instalações do Facebook e Ford.',
+    'Business development, operational strategy, risk awareness and financial services. Led group projects and mentored peers. Recognised by programme director for leadership, interpersonal skills and commitment.':
+      'Desenvolvimento empresarial, estratégia operacional, gestão de riscos e serviços financeiros. Liderou projetos em grupo e mentoreou colegas. Reconhecido pela diretora do programa por liderança, habilidades interpessoais e comprometimento.',
+    'Long-term infrastructure role managing networks, VPN, desktop support, Windows Server and full IT operations for a growing educational institution in Dublin. Foundation of deep enterprise IT expertise built over 7+ years.':
+      'Função de infraestrutura de longo prazo gerindo redes, VPN, suporte a desktop, Windows Server e operações completas de TI para instituição educacional em crescimento em Dublin. Base de expertise enterprise em TI construída ao longo de 7+ anos.',
+    'Enterprise IT in an industrial mining environment. VPN, servers, infrastructure management and operational technology support for one of Brazil\'s mineral extraction companies.':
+      'TI enterprise em ambiente industrial de mineração. VPN, servidores, gestão de infraestrutura e suporte a tecnologia operacional para uma das empresas de extração mineral do Brasil.',
+    'The beginning of a 20-year IT journey. Hardware maintenance, networking basics, helpdesk support and end-user assistance. Where curiosity for technology became a profession.':
+      'O início de uma jornada de 20 anos em TI. Manutenção de hardware, fundamentos de redes, suporte de helpdesk e atendimento ao usuário. Onde a curiosidade pela tecnologia se tornou profissão.',
+    // Skill groups
+    'Security & Architecture':          'Segurança & Arquitetura',
+    'IT Operations':                     'Operações de TI',
+    // CTF section
+    'Solo competitor — full competition': 'Competidor solo — competição completa',
+    'Username: MaikPro · Active':        'Usuário: MaikPro · Ativo',
+    'SOC L1 · DFIR · Forensics labs':   'SOC L1 · DFIR · Labs de Forense',
+    'MITRE ATT&CK v13 Practitioner':     'Praticante MITRE ATT&CK v13',
+    'Active Competitor':                 'Competidor Ativo',
+    'Active':                            'Ativo',
+    'Certified':                         'Certificado',
+    '"I joined the Zero Days CTF solo — no team, no preparation — and placed 4th overall. That result showed me how far I\'ve come from IT support in Brazil to competing against dedicated security professionals in Ireland."':
+      '"Entrei no Zero Days CTF sozinho — sem equipe, sem preparação — e fiquei em 4º lugar. Esse resultado me mostrou o quanto evolui desde o suporte técnico no Brasil até competir contra profissionais de segurança dedicados na Irlanda."',
+    // GitHub section
+    'github.com/Maikmax — 8 public repositories': 'github.com/Maikmax — 8 repositórios públicos',
+    'Professional reference letters for IT Manager, Cybersecurity and Executive roles. ATS keywords, hashtags and interview Q&A for Dublin market.':
+      'Cartas de referência profissional para funções de Gerente de TI, Cibersegurança e Executivo. Palavras-chave ATS, hashtags e Q&A de entrevista para o mercado de Dublin.',
+    'Complete portfolio of 42+ professional certifications — AWS, ISC2, Zero Trust, AttackIQ, DFIR, TikTok Enterprise (10).':
+      'Portfólio completo de 42+ certificações profissionais — AWS, ISC2, Zero Trust, AttackIQ, DFIR, TikTok Enterprise (10).',
+    'Full professional background — TikTok EMEA responsibilities, 20-year IT career, tools, key results and career overview.':
+      'Background profissional completo — responsabilidades na TikTok EMEA, carreira de 20 anos em TI, ferramentas, resultados e visão geral da carreira.',
+    'Zero Trust Architecture and IAM — concepts, frameworks and enterprise security patterns applied in real environments.':
+      'Arquitetura Zero Trust e IAM — conceitos, frameworks e padrões de segurança enterprise aplicados em ambientes reais.',
+    'Digital Forensics & Incident Response — tools, investigation notes and case studies from NCI academic work and practice labs.':
+      'Forense Digital & Resposta a Incidentes — ferramentas, notas de investigação e casos da NCI e labs de prática.',
+    'AWS Security study notes and hands-on labs covering 14 certifications — IAM, Inspector, Macie, STS, KMS and more.':
+      'Notas de estudo de Segurança AWS e labs práticos cobrindo 14 certificações — IAM, Inspector, Macie, STS, KMS e mais.',
+    'CTF writeups, HackTheBox and TryHackMe labs — documented by MaikPro. Includes 4th place Zero Days CTF.':
+      'Writeups de CTF, labs HackTheBox e TryHackMe — documentados por MaikPro. Inclui 4º lugar no Zero Days CTF.',
+    'Main GitHub profile README — full career overview, skills, certifications, achievements, recommendations and contact.':
+      'README principal do perfil GitHub — visão completa da carreira, habilidades, certificações, conquistas, recomendações e contato.',
+    // Business section
+    'ROI — Return on Investment':        'ROI — Retorno sobre Investimento',
+    'Initiative':                        'Iniciativa',
+    'Outcome':                           'Resultado',
+    'Impact':                            'Impacto',
+    'EMEA Asset Process (2022–2023)':    'Processo de Ativos EMEA (2022–2023)',
+    '50% cost & time reduction':         'Redução de 50% em custo e tempo',
+    'Direct operational savings':        'Economia operacional direta',
+    'Active Directory governance':       'Governança do Active Directory',
+    'Zero access anomalies':             'Zero anomalias de acesso',
+    'Risk exposure reduced':             'Exposição a riscos reduzida',
+    'MCU Server Upgrade':                'Upgrade do Servidor MCU',
+    '50% effectiveness gain':            '50% de ganho de efetividade',
+    'Operational continuity':            'Continuidade operacional',
+    'Grafana EMEA Monitoring':           'Monitoramento Grafana EMEA',
+    'Real-time visibility':              'Visibilidade em tempo real',
+    'Proactive issue resolution':        'Resolução proativa de problemas',
+    'KPIs — Key Performance Indicators': 'KPIs — Indicadores de Desempenho',
+    'RTO & Compliance':                  'RTO & Conformidade',
+    'Recovery Time Objective':           'Objetivo de Tempo de Recuperação',
+    'Authored':                          'Elaborou',
+    'IT RTO Guide — Dublin Office':      'Guia de RTO de TI — Escritório de Dublin',
+    'Network · Identity · Endpoint · AV Systems': 'Rede · Identidade · Endpoint · Sistemas AV',
+    'Compliance Frameworks':             'Frameworks de Conformidade',
+    'Visibility into technology costs and outcomes demonstrates strategic alignment with company goals. Controlled access and compliance documentation shows governance maturity. ROI · KPI · RTO · Compliance — the language that differentiates an IT Manager from a senior developer.':
+      'Visibilidade sobre custos e resultados tecnológicos demonstra alinhamento estratégico com os objetivos da empresa. Controle de acesso e documentação de conformidade evidenciam maturidade em governança. ROI · KPI · RTO · Conformidade — a linguagem que diferencia um Gerente de TI de um desenvolvedor sênior.',
+    // Footer
+    'Marcus Paula · IT Engineer | Cybersecurity Specialist | TikTok EMEA · Dublin, Ireland · 2026':
+      'Marcus Paula · Engenheiro de TI | Especialista em Cibersegurança | TikTok EMEA · Dublin, Irlanda · 2026',
+    // Recommendations section
+    'IT Service Operations Manager @ TikTok — managed Marcus directly · Feb 2026':
+      'Gerente de Operações de TI @ TikTok — gerenciou Marcus diretamente · Fev 2026',
+    'TikTok Dublin — worked on different teams · Mar 2023':
+      'TikTok Dublin — equipes diferentes · Mar 2023',
+    'IT Project Manager @ Activision | ex-TikTok — senior colleague · Jul 2022':
+      'Gerente de Projeto de TI @ Activision | ex-TikTok — colega sênior · Jul 2022',
+    'TikTok — same team · Jan 2023':     'TikTok — mesma equipe · Jan 2023',
+    // Education
+    'NCI Dublin · In Hold':              'NCI Dublin · Em Espera',
+    'Dublin · Diploma Awarded':          'Dublin · Diploma Concedido',
+  };
+
+  function applyTranslations(lang) {
     document.body.className = document.body.className
       .replace(/lang-\w+/g, '').trim() + ' lang-' + lang;
     document.getElementById('btn-en').classList.toggle('active', lang === 'en');
     document.getElementById('btn-pt').classList.toggle('active', lang === 'pt');
     localStorage.setItem('mp-lang', lang);
+
+    if (lang === 'pt') {
+      document.querySelectorAll('[data-en]').forEach(el => {
+        if (!el.dataset.en) el.dataset.en = el.innerHTML;
+        el.innerHTML = el.dataset.pt || el.innerHTML;
+      });
+      // Walk text nodes and translate
+      translateTextNodes(document.body, translations, 'pt');
+    } else {
+      document.querySelectorAll('[data-en]').forEach(el => {
+        if (el.dataset.en) el.innerHTML = el.dataset.en;
+      });
+      translateTextNodes(document.body, translations, 'en');
+    }
   }
-  // Load saved preference, default EN
+
+  // Store originals on first load
+  const originalTexts = new Map();
+  function storeOriginals(node) {
+    if (node.nodeType === 3 && node.textContent.trim()) {
+      originalTexts.set(node, node.textContent);
+    }
+    node.childNodes.forEach(storeOriginals);
+  }
+
+  function translateTextNodes(root, dict, lang) {
+    function walk(node) {
+      if (node.nodeType === 3) {
+        const orig = originalTexts.get(node) || node.textContent;
+        if (lang === 'pt') {
+          for (const [en, pt] of Object.entries(dict)) {
+            if (orig.trim() === en) { node.textContent = pt; return; }
+          }
+        } else {
+          for (const [en, pt] of Object.entries(dict)) {
+            if (orig.trim() === pt || orig.trim() === en) { node.textContent = orig; return; }
+          }
+        }
+      } else if (node.nodeType === 1 && !['SCRIPT','STYLE','CODE','PRE'].includes(node.tagName)) {
+        node.childNodes.forEach(walk);
+      }
+    }
+    walk(root);
+  }
+
+  function setLang(lang) { applyTranslations(lang); }
+
+  // Store originals before any translation
+  storeOriginals(document.body);
   const savedLang = localStorage.getItem('mp-lang') || 'en';
-  setLang(savedLang);
+  applyTranslations(savedLang);
 </script>
 
 </body>
