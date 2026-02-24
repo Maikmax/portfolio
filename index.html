@@ -1,245 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Marcus Paula — IT Operations Lead | TikTok EMEA | Dublin</title>
-
-  <!-- OG Meta Tags -->
-  <meta property="og:title" content="Marcus Paula — IT Operations Lead | TikTok EMEA | Dublin"/>
-  <meta property="og:description" content="20+ years IT · 5,000+ devices EMEA · 47+ certifications · Zero Trust · IAM · DFIR · Dublin, Ireland"/>
+  <title>Marcus Paula — IT Operations | TikTok EMEA | Dublin</title>
+  <meta name="description" content="Marcus Paula — IT Operations at TikTok EMEA. 20+ years IT experience across Brazil and Ireland. Zero Trust · IAM · DFIR · ITAM · Dublin, Ireland."/>
+  <meta property="og:title" content="Marcus Paula — IT Operations | TikTok EMEA | Dublin"/>
+  <meta property="og:description" content="20+ years IT · 5,000+ devices EMEA · 47+ certifications · Zero Trust · IAM · DFIR"/>
   <meta property="og:type" content="profile"/>
-  <meta name="description" content="Marcus Paula — IT Operations Lead at TikTok EMEA. 20+ years IT experience. Asset visibility 99%, 50% cost reduction, 5,000+ devices across EMEA. Dublin, Ireland."/>
-  <meta name="keywords" content="Marcus Paula, IT Operations Lead, IT Manager, TikTok EMEA, Zero Trust, IAM, DFIR, ITAM, Dublin, Ireland, Active Directory, Asset Management"/>
-
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
-
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
   <style>
-    /* ══════════════════════════════════════
-       VARIABLES
-    ══════════════════════════════════════ */
     :root {
-      --black:    #080808;
-      --dark:     #0f0f0f;
-      --card:     #141414;
-      --card2:    #1a1a1a;
-      --border:   #222222;
-      --border2:  #2e2e2e;
-      --gold:     #c9a84c;
-      --gold2:    #e8c97a;
-      --gold3:    #f5dfa0;
-      --white:    #efefef;
-      --muted:    #777777;
-      --muted2:   #555555;
-      --green:    #4caf7d;
-      --blue:     #4a9eff;
-      --purple:   #9b7fe8;
+      --bg:      #0a0a0a;
+      --surface: #111111;
+      --border:  #1e1e1e;
+      --border2: #2a2a2a;
+      --gold:    #c9a84c;
+      --gold2:   #e8c97a;
+      --white:   #eeeeee;
+      --muted:   #666666;
+      --muted2:  #444444;
+      --green:   #4caf7d;
+      --blue:    #4a9eff;
     }
 
-    /* ══════════════════════════════════════
-       RESET & BASE
-    ══════════════════════════════════════ */
-    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
 
     body {
-      background: var(--black);
+      background: var(--bg);
       color: var(--white);
-      font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+      font-family: 'Inter', system-ui, sans-serif;
       line-height: 1.7;
       overflow-x: hidden;
     }
 
-    /* ══════════════════════════════════════
-       SCROLL PROGRESS BAR
-    ══════════════════════════════════════ */
-    #progress-bar {
+    /* ── Lang Toggle ── */
+    #lang-toggle {
       position: fixed;
-      top: 0; left: 0;
-      height: 3px;
-      width: 0%;
-      background: linear-gradient(90deg, var(--gold), var(--gold2));
+      top: 16px; right: 20px;
       z-index: 9999;
+      display: flex;
+      background: var(--surface);
+      border: 1px solid var(--border2);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    #lang-toggle button {
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      padding: 6px 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    #lang-toggle button.active {
+      background: var(--gold);
+      color: #000;
+    }
+
+    /* ── Language Visibility ── */
+    body.lang-en  [data-lang="pt"] { display: none !important; }
+    body.lang-pt  [data-lang="en"] { display: none !important; }
+
+    /* ── Progress Bar ── */
+    #progress {
+      position: fixed; top: 0; left: 0;
+      height: 2px; width: 0%;
+      background: linear-gradient(90deg, var(--gold), var(--gold2));
+      z-index: 9998;
       transition: width 0.1s linear;
     }
 
-    /* ══════════════════════════════════════
-       BACK TO TOP
-    ══════════════════════════════════════ */
+    /* ── Back to Top ── */
     #back-top {
-      position: fixed;
-      bottom: 32px; right: 32px;
-      width: 44px; height: 44px;
+      position: fixed; bottom: 28px; right: 24px;
+      width: 40px; height: 40px;
       background: var(--gold);
-      color: var(--black);
-      border: none;
-      border-radius: 50%;
-      font-size: 1.2rem;
+      color: #000;
+      border: none; border-radius: 50%;
+      font-size: 1rem; font-weight: 800;
       cursor: pointer;
       opacity: 0;
-      transform: translateY(16px);
+      transform: translateY(12px);
       transition: all 0.3s;
-      z-index: 1000;
+      z-index: 999;
       display: flex; align-items: center; justify-content: center;
-      font-weight: 800;
-      box-shadow: 0 4px 20px rgba(201,168,76,0.4);
     }
-    #back-top.visible { opacity: 1; transform: translateY(0); }
-    #back-top:hover { background: var(--gold2); transform: translateY(-2px); }
+    #back-top.show { opacity: 1; transform: translateY(0); }
+    #back-top:hover { background: var(--gold2); }
 
-    /* ══════════════════════════════════════
-       HERO
-    ══════════════════════════════════════ */
-    .hero {
-      position: relative;
-      overflow: hidden;
-      padding: 100px 40px 80px;
-      text-align: center;
-      background: var(--black);
-      border-bottom: 1px solid var(--border2);
-    }
-
-    /* Grid background */
-    .hero::before {
-      content: '';
-      position: absolute; inset: 0;
-      background-image:
-        linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
-      background-size: 48px 48px;
-    }
-
-    /* Radial glow */
-    .hero::after {
-      content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse 70% 60% at 50% 40%, rgba(201,168,76,0.10) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .hero-inner { position: relative; z-index: 1; }
-
-    /* Avatar */
-    .avatar {
-      width: 100px; height: 100px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #1a1206, #2a1e08);
-      border: 2px solid var(--gold);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 2rem; font-weight: 900;
-      color: var(--gold);
-      margin: 0 auto 28px;
-      box-shadow: 0 0 0 6px rgba(201,168,76,0.08), 0 0 40px rgba(201,168,76,0.15);
-      position: relative;
-      letter-spacing: -1px;
-    }
-    .avatar-ring {
-      position: absolute; inset: -8px;
-      border-radius: 50%;
-      border: 1px solid rgba(201,168,76,0.2);
-      animation: pulse-ring 3s ease-in-out infinite;
-    }
-    @keyframes pulse-ring {
-      0%, 100% { transform: scale(1); opacity: 0.4; }
-      50% { transform: scale(1.06); opacity: 0.8; }
-    }
-
-    .hero-flags { font-size: 1.4rem; margin-bottom: 12px; letter-spacing: 4px; }
-
-    .hero h1 {
-      font-size: clamp(2.4rem, 6vw, 4rem);
-      font-weight: 900;
-      background: linear-gradient(135deg, var(--gold) 0%, var(--gold2) 50%, var(--gold3) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      letter-spacing: -2px;
-      line-height: 1.1;
-      margin-bottom: 12px;
-    }
-
-    .hero-subtitle {
-      font-size: 1rem;
-      color: var(--muted);
-      font-weight: 400;
-      letter-spacing: 0.5px;
-      margin-bottom: 32px;
-      max-width: 580px;
-      margin-left: auto; margin-right: auto;
-    }
-
-    .hero-badges {
-      display: flex; flex-wrap: wrap; gap: 8px;
-      justify-content: center; margin-bottom: 48px;
-    }
-    .badge {
-      background: rgba(201,168,76,0.08);
-      border: 1px solid rgba(201,168,76,0.25);
-      color: var(--gold2);
-      padding: 5px 14px;
-      border-radius: 20px;
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.3px;
-      transition: all 0.2s;
-    }
-    .badge:hover { background: rgba(201,168,76,0.15); border-color: var(--gold); }
-
-    /* Stats row */
-    .hero-stats {
-      display: flex; flex-wrap: wrap; gap: 0;
-      justify-content: center;
-      background: rgba(255,255,255,0.02);
-      border: 1px solid var(--border2);
-      border-radius: 16px;
-      max-width: 780px;
-      margin: 0 auto;
-      overflow: hidden;
-    }
-    .stat {
-      flex: 1; min-width: 110px;
-      padding: 24px 16px;
-      text-align: center;
-      border-right: 1px solid var(--border);
-      transition: background 0.2s;
-    }
-    .stat:last-child { border-right: none; }
-    .stat:hover { background: rgba(201,168,76,0.04); }
-    .stat-num {
-      font-size: 1.9rem; font-weight: 900;
-      color: var(--gold);
-      display: block; line-height: 1;
-      font-variant-numeric: tabular-nums;
-    }
-    .stat-label {
-      font-size: 0.68rem; color: var(--muted);
-      text-transform: uppercase; letter-spacing: 1px;
-      margin-top: 6px; display: block;
-    }
-
-    /* ══════════════════════════════════════
-       NAV
-    ══════════════════════════════════════ */
+    /* ── Nav ── */
     nav {
-      background: rgba(8,8,8,0.95);
-      backdrop-filter: blur(12px);
+      background: rgba(10,10,10,0.92);
+      backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--border);
-      padding: 0 40px;
       position: sticky; top: 0; z-index: 100;
-      display: flex; gap: 0;
-      overflow-x: auto;
+      display: flex; overflow-x: auto;
       scrollbar-width: none;
+      padding: 0 24px;
     }
     nav::-webkit-scrollbar { display: none; }
     nav a {
       color: var(--muted);
       text-decoration: none;
-      padding: 15px 16px;
-      font-size: 0.75rem;
+      padding: 14px 14px;
+      font-size: 0.72rem;
       font-weight: 600;
       letter-spacing: 0.8px;
       text-transform: uppercase;
@@ -249,1619 +121,1009 @@
     }
     nav a:hover, nav a.active { color: var(--gold); border-color: var(--gold); }
 
-    /* ══════════════════════════════════════
-       LAYOUT
-    ══════════════════════════════════════ */
-    .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
-    section { padding: 72px 0; border-bottom: 1px solid var(--border); }
-    section:last-child { border-bottom: none; }
-
-    .section-header { display: flex; align-items: center; gap: 14px; margin-bottom: 44px; }
-    .section-icon {
-      width: 44px; height: 44px;
-      background: rgba(201,168,76,0.08);
-      border: 1px solid rgba(201,168,76,0.2);
-      border-radius: 12px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.2rem; flex-shrink: 0;
-    }
-    .section-title { font-size: 1.4rem; font-weight: 800; color: var(--white); letter-spacing: -0.5px; }
-    .section-sub { font-size: 0.8rem; color: var(--muted); margin-top: 2px; }
-
-    /* ══════════════════════════════════════
-       CARDS
-    ══════════════════════════════════════ */
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 28px 32px;
-      margin-bottom: 16px;
-      transition: border-color 0.25s, transform 0.2s;
-    }
-    .card:hover { border-color: rgba(201,168,76,0.35); transform: translateY(-1px); }
-    .card-header {
-      display: flex; justify-content: space-between;
-      align-items: flex-start; flex-wrap: wrap; gap: 10px;
-      margin-bottom: 14px;
-    }
-    .card-title { font-size: 1.05rem; font-weight: 700; color: var(--white); }
-    .card-company { font-size: 0.88rem; color: var(--gold); font-weight: 600; margin-top: 3px; }
-    .card-date {
-      font-size: 0.73rem; color: var(--muted);
-      background: var(--card2);
-      border: 1px solid var(--border2);
-      padding: 4px 12px; border-radius: 20px;
-      white-space: nowrap; flex-shrink: 0;
-    }
-
-    /* ══════════════════════════════════════
-       WHAT I BRING — 4 impact cards
-    ══════════════════════════════════════ */
-    .bring-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
-      margin-bottom: 40px;
-    }
-    .bring-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 28px 24px;
-      transition: all 0.25s;
-    }
-    .bring-card:hover {
-      border-color: rgba(201,168,76,0.4);
-      transform: translateY(-3px);
-      box-shadow: 0 12px 32px rgba(0,0,0,0.4);
-    }
-    .bring-icon { font-size: 2rem; margin-bottom: 14px; }
-    .bring-title { font-size: 1rem; font-weight: 800; color: var(--white); margin-bottom: 8px; }
-    .bring-text { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
-
-    /* ══════════════════════════════════════
-       METRICS
-    ══════════════════════════════════════ */
-    .metrics-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 14px; margin: 28px 0;
-    }
-    .metric-card {
-      background: rgba(201,168,76,0.05);
-      border: 1px solid rgba(201,168,76,0.15);
-      border-radius: 12px;
-      padding: 22px 16px;
+    /* ── Hero ── */
+    .hero {
+      padding: 90px 24px 70px;
       text-align: center;
-      transition: all 0.2s;
-    }
-    .metric-card:hover { border-color: var(--gold); background: rgba(201,168,76,0.09); }
-    .metric-num {
-      font-size: 2.2rem; font-weight: 900;
-      color: var(--gold); display: block;
-      line-height: 1; font-variant-numeric: tabular-nums;
-    }
-    .metric-label { font-size: 0.72rem; color: var(--muted); margin-top: 7px; line-height: 1.4; }
-
-    /* ══════════════════════════════════════
-       RESPONSIBILITY TABLE
-    ══════════════════════════════════════ */
-    .resp-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-    .resp-table th {
-      background: rgba(201,168,76,0.07);
-      color: var(--gold);
-      font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1.2px;
-      padding: 10px 16px; text-align: left;
-      border-bottom: 1px solid var(--border2);
-    }
-    .resp-table td {
-      padding: 13px 16px;
+      background: var(--bg);
       border-bottom: 1px solid var(--border);
-      font-size: 0.85rem; vertical-align: top;
-    }
-    .resp-table tr:last-child td { border-bottom: none; }
-    .resp-table tr:hover td { background: rgba(255,255,255,0.02); }
-    .resp-area { font-weight: 700; color: var(--gold2); white-space: nowrap; }
-
-    /* ══════════════════════════════════════
-       TAGS
-    ══════════════════════════════════════ */
-    .tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 16px; }
-    .tag {
-      background: rgba(74,158,255,0.08);
-      border: 1px solid rgba(74,158,255,0.2);
-      color: #7ab8ff;
-      padding: 3px 11px; border-radius: 6px;
-      font-size: 0.75rem; font-weight: 600;
-      transition: all 0.15s;
-    }
-    .tag:hover { background: rgba(74,158,255,0.15); }
-    .tag-gold { background: rgba(201,168,76,0.08); border-color: rgba(201,168,76,0.2); color: var(--gold2); }
-    .tag-green { background: rgba(76,175,125,0.08); border-color: rgba(76,175,125,0.2); color: var(--green); }
-
-    /* ══════════════════════════════════════
-       TIMELINE
-    ══════════════════════════════════════ */
-    .timeline { position: relative; padding-left: 36px; }
-    .timeline::before {
-      content: '';
-      position: absolute; left: 11px; top: 12px; bottom: 12px;
-      width: 2px;
-      background: linear-gradient(to bottom, var(--gold) 0%, rgba(201,168,76,0.1) 100%);
-    }
-    .timeline-item { position: relative; margin-bottom: 32px; }
-    .timeline-dot {
-      position: absolute; left: -29px; top: 10px;
-      width: 16px; height: 16px;
-      border-radius: 50%;
-      background: var(--card);
-      border: 2px solid var(--gold);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 0.55rem;
-      box-shadow: 0 0 12px rgba(201,168,76,0.4);
-      z-index: 1;
-    }
-    .timeline-dot.current {
-      background: var(--gold);
-      animation: dot-pulse 2s ease-in-out infinite;
-    }
-    @keyframes dot-pulse {
-      0%, 100% { box-shadow: 0 0 8px rgba(201,168,76,0.5); }
-      50% { box-shadow: 0 0 20px rgba(201,168,76,0.9); }
-    }
-    .timeline-year {
-      font-size: 0.7rem; font-weight: 700;
-      color: var(--gold); text-transform: uppercase;
-      letter-spacing: 1.2px; margin-bottom: 8px;
-    }
-
-    /* ══════════════════════════════════════
-       SKILLS WITH PROGRESS BARS
-    ══════════════════════════════════════ */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-    }
-    .skill-group {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 24px;
-    }
-    .skill-group:hover { border-color: rgba(201,168,76,0.25); }
-    .skill-group-title {
-      font-size: 0.7rem; font-weight: 800;
-      color: var(--gold); text-transform: uppercase;
-      letter-spacing: 1.2px; margin-bottom: 18px;
-      display: flex; align-items: center; gap: 8px;
-    }
-    .skill-group-title::after { content: ''; flex:1; height:1px; background: var(--border); }
-    .skill-item { margin-bottom: 14px; }
-    .skill-item:last-child { margin-bottom: 0; }
-    .skill-row {
-      display: flex; justify-content: space-between;
-      align-items: center; margin-bottom: 5px;
-    }
-    .skill-name { font-size: 0.83rem; font-weight: 500; color: var(--white); }
-    .skill-pct { font-size: 0.7rem; font-weight: 700; color: var(--muted); }
-    .skill-bar {
-      height: 4px; background: var(--border2);
-      border-radius: 4px; overflow: hidden;
-    }
-    .skill-fill {
-      height: 100%; border-radius: 4px;
-      background: linear-gradient(90deg, var(--gold), var(--gold2));
-      width: 0%;
-      transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
-    }
-    .skill-fill.animated { }
-
-    /* ══════════════════════════════════════
-       CERTIFICATIONS
-    ══════════════════════════════════════ */
-    .cert-group { margin-bottom: 32px; }
-    .cert-group-title {
-      font-size: 0.72rem; font-weight: 800;
-      color: var(--gold); text-transform: uppercase;
-      letter-spacing: 1.2px; margin-bottom: 12px;
-      display: flex; align-items: center; gap: 10px;
-    }
-    .cert-group-title::after { content: ''; flex:1; height:1px; background: var(--border); }
-    .cert-list { display: flex; flex-direction: column; gap: 5px; }
-    .cert-item {
-      display: flex; justify-content: space-between; align-items: center;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 10px 16px;
-      transition: all 0.2s;
-    }
-    .cert-item:hover { border-color: rgba(201,168,76,0.3); background: var(--card2); }
-    .cert-name { font-size: 0.84rem; color: var(--white); }
-    .cert-meta { font-size: 0.72rem; color: var(--muted); text-align: right; flex-shrink: 0; margin-left: 12px; }
-    .cert-issuer { color: var(--gold2); font-weight: 600; display: block; }
-
-    /* ══════════════════════════════════════
-       GITHUB REPOS
-    ══════════════════════════════════════ */
-    .repos-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 14px;
-    }
-    .repo-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 22px 24px;
-      text-decoration: none; display: block;
-      transition: all 0.25s;
-    }
-    .repo-card:hover {
-      border-color: var(--gold);
-      transform: translateY(-3px);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
-    }
-    .repo-icon { font-size: 1.5rem; margin-bottom: 10px; }
-    .repo-name { font-size: 0.9rem; font-weight: 700; color: var(--blue); margin-bottom: 7px; }
-    .repo-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.55; }
-    .repo-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 12px; }
-    .repo-tag {
-      font-size: 0.68rem; color: var(--muted2);
-      background: var(--border);
-      padding: 2px 8px; border-radius: 4px;
-    }
-
-    /* ══════════════════════════════════════
-       CTF
-    ══════════════════════════════════════ */
-    .ctf-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 14px;
-    }
-    .ctf-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 28px 20px;
-      text-align: center;
-      transition: all 0.2s;
-    }
-    .ctf-card:hover { transform: translateY(-2px); }
-    .ctf-card.highlight {
-      border-color: var(--gold);
-      background: rgba(201,168,76,0.05);
-      box-shadow: 0 0 24px rgba(201,168,76,0.12);
-    }
-    .ctf-icon { font-size: 2.2rem; margin-bottom: 12px; }
-    .ctf-name { font-weight: 800; font-size: 0.95rem; color: var(--white); margin-bottom: 5px; }
-    .ctf-detail { font-size: 0.78rem; color: var(--muted); margin-bottom: 12px; }
-    .ctf-badge {
-      display: inline-block;
-      background: var(--gold);
-      color: var(--black);
-      font-size: 0.7rem; font-weight: 800;
-      padding: 4px 12px; border-radius: 20px;
-      letter-spacing: 0.5px;
-    }
-
-    /* ══════════════════════════════════════
-       RECOMMENDATIONS
-    ══════════════════════════════════════ */
-    .rec-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-left: 3px solid var(--gold);
-      border-radius: 0 14px 14px 0;
-      padding: 26px 30px;
-      margin-bottom: 16px;
-      transition: border-color 0.2s;
-    }
-    .rec-card:hover { border-left-color: var(--gold2); }
-    .rec-quote {
-      font-size: 0.9rem; color: var(--white);
-      font-style: italic; line-height: 1.85;
-      margin-bottom: 18px;
-    }
-    .rec-author { display: flex; align-items: center; gap: 12px; }
-    .rec-avatar {
-      width: 38px; height: 38px; flex-shrink: 0;
-      background: rgba(201,168,76,0.12);
-      border: 1px solid rgba(201,168,76,0.3);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-weight: 800; color: var(--gold); font-size: 0.8rem;
-    }
-    .rec-name { font-weight: 700; font-size: 0.88rem; color: var(--white); }
-    .rec-role { font-size: 0.75rem; color: var(--muted); }
-    .rec-stars { color: var(--gold); font-size: 0.75rem; margin-bottom: 2px; }
-
-    /* ══════════════════════════════════════
-       FOOTER
-    ══════════════════════════════════════ */
-    footer {
-      background: var(--dark);
-      border-top: 1px solid var(--border);
-      padding: 48px 40px;
-      text-align: center;
-    }
-    .footer-links { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin-bottom: 20px; }
-    .footer-links a {
-      color: var(--gold); text-decoration: none;
-      font-size: 0.85rem; font-weight: 600;
-      transition: color 0.2s;
-    }
-    .footer-links a:hover { color: var(--gold2); }
-    .footer-copy { font-size: 0.75rem; color: var(--muted2); }
-
-    /* ══════════════════════════════════════
-       UTILS
-    ══════════════════════════════════════ */
-    .hl { color: var(--gold); font-weight: 700; }
-    .muted { color: var(--muted); }
-    p { margin-bottom: 12px; font-size: 0.9rem; color: #ccc; }
-    p:last-child { margin-bottom: 0; }
-    .mt-16 { margin-top: 16px; }
-    .mt-24 { margin-top: 24px; }
-    .mt-32 { margin-top: 32px; }
-
-    /* ══════════════════════════════════════
-       LANGUAGE TOGGLE
-    ══════════════════════════════════════ */
-    #lang-toggle {
-      position: fixed;
-      top: 14px; right: 80px;
-      z-index: 9999;
-      background: var(--card2);
-      border: 1px solid var(--border2);
-      border-radius: 20px;
-      display: flex;
+      position: relative;
       overflow: hidden;
     }
-    #lang-toggle button {
-      background: none;
-      border: none;
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(201,168,76,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,168,76,0.03) 1px, transparent 1px);
+      background-size: 50px 50px;
+    }
+    .hero::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 50% at 50% 40%, rgba(201,168,76,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-inner { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
+
+    .avatar {
+      width: 88px; height: 88px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #1a1206, #221808);
+      border: 2px solid var(--gold);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem; font-weight: 800;
+      color: var(--gold);
+      margin: 0 auto 24px;
+      box-shadow: 0 0 0 5px rgba(201,168,76,0.07), 0 0 36px rgba(201,168,76,0.12);
+    }
+
+    .flags { font-size: 1.3rem; margin-bottom: 10px; letter-spacing: 4px; }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5.5vw, 3.2rem);
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold2) 60%, #f5dfa0 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -1.5px;
+      line-height: 1.15;
+      margin-bottom: 10px;
+    }
+
+    .hero-sub {
+      font-size: 0.95rem;
       color: var(--muted);
-      font-size: 0.75rem;
-      font-weight: 700;
-      font-family: 'Inter', sans-serif;
-      padding: 5px 12px;
-      cursor: pointer;
-      letter-spacing: 0.05em;
-      transition: all 0.2s;
+      margin-bottom: 28px;
+      font-weight: 400;
     }
-    #lang-toggle button.active {
-      background: var(--gold);
-      color: var(--black);
+
+    .badges {
+      display: flex; flex-wrap: wrap; gap: 7px;
+      justify-content: center; margin-bottom: 40px;
+    }
+    .badge {
+      background: rgba(201,168,76,0.07);
+      border: 1px solid rgba(201,168,76,0.22);
+      color: var(--gold2);
+      padding: 4px 13px;
       border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
     }
-    #lang-toggle button:hover:not(.active) { color: var(--white); }
 
-    /* Hide PT or EN elements based on lang */
-    body.lang-en [data-lang="pt"] { display: none !important; }
-    body.lang-pt [data-lang="en"] { display: none !important; }
-
-    /* 3-col info grid */
-    .info-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-      gap: 14px; margin-top: 14px;
+    .stats {
+      display: flex; flex-wrap: wrap;
+      justify-content: center;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border2);
+      border-radius: 12px;
+      overflow: hidden;
+      max-width: 680px;
+      margin: 0 auto;
     }
-    .info-card {
-      background: var(--card2);
+    .stat {
+      flex: 1; min-width: 100px;
+      padding: 20px 12px;
+      text-align: center;
+      border-right: 1px solid var(--border);
+    }
+    .stat:last-child { border-right: none; }
+    .stat-n {
+      display: block;
+      font-size: 1.7rem; font-weight: 800;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .stat-l {
+      display: block;
+      font-size: 0.65rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 5px;
+    }
+
+    /* ── Sections ── */
+    .container { max-width: 920px; margin: 0 auto; padding: 0 24px; }
+    section { padding: 64px 0; border-bottom: 1px solid var(--border); }
+    section:last-of-type { border-bottom: none; }
+
+    .sec-head {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 36px;
+    }
+    .sec-icon {
+      width: 40px; height: 40px;
+      background: rgba(201,168,76,0.07);
+      border: 1px solid rgba(201,168,76,0.18);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; flex-shrink: 0;
+    }
+    .sec-title { font-size: 1.25rem; font-weight: 800; letter-spacing: -0.3px; }
+    .sec-sub { font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
+
+    /* ── Card ── */
+    .card {
+      background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 20px 22px;
+      padding: 24px 28px;
+      margin-bottom: 14px;
+      transition: border-color 0.25s, transform 0.2s;
     }
-    .info-label {
-      font-size: 0.68rem; font-weight: 800;
-      color: var(--muted); text-transform: uppercase;
-      letter-spacing: 1.2px; margin-bottom: 12px;
+    .card:hover { border-color: rgba(201,168,76,0.3); transform: translateY(-1px); }
+    .card-row {
+      display: flex; justify-content: space-between;
+      align-items: flex-start; flex-wrap: wrap; gap: 8px;
+      margin-bottom: 12px;
     }
-    .info-row { font-size: 0.84rem; margin-bottom: 7px; color: #ccc; }
-    .info-row:last-child { margin-bottom: 0; }
-    .info-row a { color: var(--blue); text-decoration: none; }
-    .info-row a:hover { color: var(--gold2); }
+    .card-title { font-size: 1rem; font-weight: 700; }
+    .card-co { font-size: 0.85rem; color: var(--gold); font-weight: 600; margin-top: 2px; }
+    .chip {
+      font-size: 0.7rem; color: var(--muted);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border2);
+      padding: 3px 11px; border-radius: 20px;
+      white-space: nowrap; flex-shrink: 0;
+    }
+    .card p { font-size: 0.88rem; color: var(--muted); line-height: 1.7; }
 
-    /* ══════════════════════════════════════
-       PRINT
-    ══════════════════════════════════════ */
-    @media print {
-      #progress-bar, #back-top, nav { display: none !important; }
-      body { background: #fff; color: #111; font-size: 11pt; }
-      .hero { background: #fff; border-bottom: 2px solid #c9a84c; padding: 32px; }
-      .hero h1 { background: none; -webkit-text-fill-color: #c9a84c; color: #c9a84c; }
-      .hero-stats, .hero-badges { display: none; }
-      .card, .cert-item, .repo-card, .rec-card, .skill-group, .ctf-card, .bring-card {
-        background: #fff; border: 1px solid #ddd; box-shadow: none;
-        break-inside: avoid;
-      }
-      section { padding: 24px 0; border-bottom: 1px solid #eee; }
-      .metric-card { border: 1px solid #ddd; }
-      .metric-num { color: #c9a84c; }
-      .hl, .card-company, .cert-issuer, .repo-name { color: #c9a84c !important; }
-      .tag, .badge { border: 1px solid #ddd; color: #555; background: #f5f5f5; }
-      a { color: #333; text-decoration: none; }
+    /* ── About grid ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    @media(max-width: 600px) { .about-grid { grid-template-columns: 1fr; } }
+
+    .about-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 22px 24px;
+    }
+    .about-card-icon { font-size: 1.4rem; margin-bottom: 10px; }
+    .about-card h3 { font-size: 0.92rem; font-weight: 700; margin-bottom: 6px; }
+    .about-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+
+    /* ── Skills ── */
+    .skill-group { margin-bottom: 28px; }
+    .skill-label {
+      display: flex; justify-content: space-between;
+      font-size: 0.82rem; font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .skill-pct { color: var(--muted); font-weight: 400; }
+    .skill-bar {
+      height: 5px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .skill-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--gold), var(--gold2));
+      border-radius: 3px;
+      width: 0%;
+      transition: width 1s ease;
     }
 
-    /* ══════════════════════════════════════
-       RESPONSIVE
-    ══════════════════════════════════════ */
-    @media (max-width: 640px) {
-      .hero { padding: 60px 20px 48px; }
+    /* ── Cert tags ── */
+    .cert-section { margin-bottom: 28px; }
+    .cert-group-title {
+      font-size: 0.75rem;
+      color: var(--gold);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+    }
+    .cert-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+    .cert-tag {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border2);
+      border-radius: 6px;
+      padding: 4px 11px;
+      font-size: 0.75rem;
+      color: var(--white);
+      font-weight: 500;
+    }
+
+    /* ── Repos ── */
+    .repos { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media(max-width: 640px) { .repos { grid-template-columns: 1fr; } }
+    .repo-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px 20px;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.2s, transform 0.2s;
+      display: block;
+    }
+    .repo-card:hover { border-color: rgba(201,168,76,0.35); transform: translateY(-1px); }
+    .repo-name {
+      font-size: 0.88rem; font-weight: 700;
+      color: var(--blue); margin-bottom: 6px;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .repo-name::before { content: '⬡'; font-size: 0.7rem; color: var(--gold); }
+    .repo-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
+
+    /* ── CTF ── */
+    .ctf-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+    @media(max-width: 640px) { .ctf-grid { grid-template-columns: 1fr; } }
+    .ctf-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+    }
+    .ctf-icon { font-size: 1.8rem; margin-bottom: 10px; }
+    .ctf-title { font-size: 0.88rem; font-weight: 700; margin-bottom: 4px; }
+    .ctf-detail { font-size: 0.75rem; color: var(--muted); }
+    .ctf-badge {
+      display: inline-block;
+      background: rgba(201,168,76,0.1);
+      border: 1px solid rgba(201,168,76,0.3);
+      color: var(--gold2);
+      border-radius: 20px;
+      padding: 2px 10px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      margin-top: 8px;
+    }
+
+    /* ── Contact ── */
+    .contact-links {
+      display: flex; flex-wrap: wrap; gap: 10px;
+      margin-top: 24px;
+    }
+    .contact-link {
+      display: flex; align-items: center; gap: 8px;
+      background: var(--surface);
+      border: 1px solid var(--border2);
+      border-radius: 8px;
+      padding: 10px 16px;
+      text-decoration: none;
+      color: var(--white);
+      font-size: 0.82rem;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    .contact-link:hover { border-color: var(--gold); color: var(--gold); }
+    .contact-link span:first-child { font-size: 1rem; }
+
+    /* ── Recommendations ── */
+    .rec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    @media(max-width: 640px) { .rec-grid { grid-template-columns: 1fr; } }
+    .rec-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 22px 24px;
+    }
+    .rec-stars { color: var(--gold); font-size: 0.8rem; margin-bottom: 10px; letter-spacing: 2px; }
+    .rec-text { font-size: 0.82rem; color: var(--muted); line-height: 1.65; font-style: italic; margin-bottom: 14px; }
+    .rec-name { font-size: 0.8rem; font-weight: 700; }
+    .rec-role { font-size: 0.72rem; color: var(--muted); }
+
+    /* ── Footer ── */
+    footer {
+      padding: 40px 24px;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+    footer p { font-size: 0.78rem; color: var(--muted2); }
+    footer a { color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--gold); }
+
+    /* ── Fade in ── */
+    .fade-in { opacity: 0; transform: translateY(18px); transition: opacity 0.5s ease, transform 0.5s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── Responsive ── */
+    @media(max-width: 600px) {
+      .hero { padding: 80px 20px 50px; }
       nav { padding: 0 12px; }
+      nav a { padding: 13px 10px; font-size: 0.68rem; }
       .container { padding: 0 16px; }
       section { padding: 48px 0; }
-      .card { padding: 20px; }
-      .hero-stats { border-radius: 12px; }
-      .stat { min-width: 80px; padding: 18px 10px; }
-      .stat-num { font-size: 1.5rem; }
     }
   </style>
 </head>
-<body>
+<body class="lang-en">
 
-<!-- PROGRESS BAR -->
-<div id="progress-bar"></div>
+<!-- Progress Bar -->
+<div id="progress"></div>
 
-<!-- BACK TO TOP -->
-<button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
-
-<!-- LANGUAGE TOGGLE -->
+<!-- Lang Toggle -->
 <div id="lang-toggle">
   <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
   <button id="btn-pt" onclick="setLang('pt')">PT</button>
 </div>
 
-<!-- ══════════════════════════════════════
+<!-- Back to Top -->
+<button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<!-- ═══════════════════════════════
      HERO
-══════════════════════════════════════ -->
+════════════════════════════════ -->
 <div class="hero">
   <div class="hero-inner">
-    <div class="avatar">
-      <div class="avatar-ring"></div>
-      MP
-    </div>
-    <div class="hero-flags">🇧🇷 → 🇮🇪</div>
+    <div class="avatar">MP</div>
+    <div class="flags">🇧🇷 🇮🇪</div>
     <h1>Marcus Paula</h1>
-    <div class="hero-subtitle" data-lang="en">
-      IT Operations Lead &nbsp;·&nbsp; TikTok EMEA &nbsp;·&nbsp; 5,000+ Devices EMEA &nbsp;·&nbsp; Dublin, Ireland
-    </div>
-    <div class="hero-subtitle" data-lang="pt">
-      Engenheiro de TI — EMEA &nbsp;·&nbsp; Especialista em Cibersegurança &nbsp;·&nbsp; TikTok EMEA &nbsp;·&nbsp; Dublin, Irlanda
-    </div>
-    <div class="hero-badges">
-      <span class="badge">20+ Years in IT</span>
-      <span class="badge">TikTok EMEA</span>
-      <span class="badge">Zero Trust Certified</span>
-      <span class="badge">47+ Certifications</span>
-      <span class="badge">HackTheBox · MaikPro</span>
-      <span class="badge">CTF 4th Place Solo</span>
-      <span class="badge">NCI Cyber Security</span>
-      <span class="badge">MITRE ATT&CK</span>
+    <p class="hero-sub" data-lang="en">IT Operations · TikTok EMEA · Dublin, Ireland</p>
+    <p class="hero-sub" data-lang="pt">Operações de TI · TikTok EMEA · Dublin, Irlanda</p>
+    <div class="badges">
+      <span class="badge">Zero Trust</span>
+      <span class="badge">IAM</span>
       <span class="badge">DFIR</span>
+      <span class="badge">ITAM</span>
+      <span class="badge">AWS</span>
+      <span class="badge">Active Directory</span>
+      <span class="badge">JAMF · Puppet · SEP</span>
     </div>
-    <div class="hero-stats">
+    <div class="stats">
       <div class="stat">
-        <span class="stat-num" data-target="20" data-suffix="+">0</span>
-        <span class="stat-label">Years IT</span>
+        <span class="stat-n">20+</span>
+        <span class="stat-l" data-lang="en">Years IT</span>
+        <span class="stat-l" data-lang="pt">Anos em TI</span>
       </div>
       <div class="stat">
-        <span class="stat-num" data-target="5" data-suffix="k+">0</span>
-        <span class="stat-label">Devices EMEA</span>
+        <span class="stat-n">5k+</span>
+        <span class="stat-l" data-lang="en">Devices EMEA</span>
+        <span class="stat-l" data-lang="pt">Dispositivos EMEA</span>
       </div>
       <div class="stat">
-        <span class="stat-num" data-target="47" data-suffix="+">0</span>
-        <span class="stat-label">Certifications</span>
+        <span class="stat-n">47+</span>
+        <span class="stat-l" data-lang="en">Certifications</span>
+        <span class="stat-l" data-lang="pt">Certificações</span>
       </div>
       <div class="stat">
-        <span class="stat-num" data-target="7" data-suffix="">0</span>
-        <span class="stat-label">Countries</span>
-      </div>
-      <div class="stat">
-        <span class="stat-num" data-target="99" data-suffix="%">0</span>
-        <span class="stat-label">Asset Visibility</span>
-      </div>
-      <div class="stat">
-        <span class="stat-num" data-target="4" data-suffix="th">0</span>
-        <span class="stat-label">CTF Ranking</span>
+        <span class="stat-n">7</span>
+        <span class="stat-l" data-lang="en">Countries</span>
+        <span class="stat-l" data-lang="pt">Países</span>
       </div>
     </div>
   </div>
 </div>
 
-<!-- NAV -->
-<nav id="main-nav">
-  <a href="#about"          data-lang="en">About</a>
-  <a href="#about"          data-lang="pt">Sobre</a>
-  <a href="#brings"         data-lang="en">What I Bring</a>
-  <a href="#brings"         data-lang="pt">O Que Ofereço</a>
-  <a href="#tiktok"         data-lang="en">TikTok EMEA</a>
-  <a href="#tiktok"         data-lang="pt">TikTok EMEA</a>
-  <a href="#timeline"       data-lang="en">Timeline</a>
-  <a href="#timeline"       data-lang="pt">Carreira</a>
-  <a href="#skills"         data-lang="en">Skills</a>
-  <a href="#skills"         data-lang="pt">Habilidades</a>
+<!-- ═══════════════════════════════
+     NAV
+════════════════════════════════ -->
+<nav>
+  <a href="#about" data-lang="en">About</a>
+  <a href="#about" data-lang="pt">Sobre</a>
+  <a href="#experience" data-lang="en">Experience</a>
+  <a href="#experience" data-lang="pt">Experiência</a>
+  <a href="#skills" data-lang="en">Skills</a>
+  <a href="#skills" data-lang="pt">Habilidades</a>
   <a href="#certifications" data-lang="en">Certifications</a>
   <a href="#certifications" data-lang="pt">Certificações</a>
-  <a href="#github"         data-lang="en">GitHub</a>
-  <a href="#github"         data-lang="pt">GitHub</a>
-  <a href="#ctf"            data-lang="en">CTF</a>
-  <a href="#ctf"            data-lang="pt">CTF</a>
-  <a href="#recommendations" data-lang="en">Recommendations</a>
-  <a href="#recommendations" data-lang="pt">Recomendações</a>
-  <a href="#business"       data-lang="en">ROI &amp; KPI</a>
-  <a href="#business"       data-lang="pt">ROI &amp; KPI</a>
+  <a href="#github" data-lang="en">GitHub</a>
+  <a href="#github" data-lang="pt">GitHub</a>
+  <a href="#ctf" data-lang="en">CTF</a>
+  <a href="#ctf" data-lang="pt">CTF</a>
+  <a href="#recommendations" data-lang="en">References</a>
+  <a href="#recommendations" data-lang="pt">Referências</a>
+  <a href="#contact" data-lang="en">Contact</a>
+  <a href="#contact" data-lang="pt">Contato</a>
 </nav>
 
-<!-- ══════════════════════════════════════
+<!-- ═══════════════════════════════
      ABOUT
-══════════════════════════════════════ -->
+════════════════════════════════ -->
 <section id="about">
   <div class="container">
-    <div class="section-header">
-      <div class="section-icon">👤</div>
+    <div class="sec-head fade-in">
+      <div class="sec-icon">👤</div>
       <div>
-        <div class="section-title" data-lang="en">About Me</div>
-        <div class="section-title" data-lang="pt">Sobre Mim</div>
-        <div class="section-sub" data-lang="en">Professional Summary</div>
-        <div class="section-sub" data-lang="pt">Resumo Profissional</div>
+        <div class="sec-title" data-lang="en">About Me</div>
+        <div class="sec-title" data-lang="pt">Sobre Mim</div>
+        <div class="sec-sub" data-lang="en">20 years building and running enterprise IT</div>
+        <div class="sec-sub" data-lang="pt">20 anos construindo e gerenciando TI empresarial</div>
       </div>
     </div>
-    <div class="card">
-      <p data-lang="en">IT Operations Lead with <span class="hl">20+ years of experience</span> delivering measurable outcomes across enterprise IT — starting in IT support in Brazil in 2004 and progressing through senior operations and security roles in Ireland.</p>
-      <p data-lang="en">Currently driving IT operations at <span class="hl">TikTok EMEA in Dublin</span> across 5,000+ devices in 7 countries. Built the EMEA asset management programme from scratch, achieving <strong>99% asset visibility</strong> and <strong>50% cost reduction</strong>. Responsible for ITAM, IAM, infrastructure monitoring, compliance and EMEA-wide regional rollout.</p>
-      <p data-lang="pt">Engenheiro de TI Sênior e Especialista em Cibersegurança com <span class="hl">mais de 20 anos de experiência</span> — começando em suporte técnico no Brasil em 2004 e evoluindo para operações de TI enterprise e arquitetura de segurança na Irlanda.</p>
-      <p data-lang="pt">Atualmente trabalho na <span class="hl">TikTok EMEA em Dublin</span> como Engenheiro de TI, apoiando a equipe de TI da EMEA com mais de 5.000 dispositivos em 7 países. Contribuo com operações de ponta a ponta: gestão de ativos, conformidade de segurança, onboarding de novos colaboradores e monitoramento de infraestrutura com Grafana. Construo processos, resolvo problemas e entrego resultados mensuráveis.</p>
-      <div class="tags">
-        <span class="tag tag-gold">IT Operations Lead — EMEA</span>
-        <span class="tag tag-gold">Zero Trust Architecture</span>
-        <span class="tag tag-gold">IAM / Active Directory</span>
-        <span class="tag tag-gold">DFIR</span>
-        <span class="tag tag-gold">EMEA Operations</span>
-        <span class="tag tag-gold">ITAM</span>
-        <span class="tag tag-gold">GRC / Compliance</span>
-        <span class="tag tag-gold">AWS Cloud Security</span>
-      </div>
+
+    <div class="card fade-in">
+      <p data-lang="en">
+        IT professional with 20+ years of experience, currently at <strong style="color:var(--white)">TikTok EMEA</strong> in Dublin, Ireland — supporting 5,000+ devices across Dublin, Madrid, and Milan. My work spans asset management (ITAM), identity and access (IAM), infrastructure, security compliance, and DFIR. I moved from Brazil to Ireland in 2012 and have since built a career focused on Zero Trust architecture, enterprise security, and operational excellence.
+      </p>
+      <p data-lang="pt">
+        Profissional de TI com 20+ anos de experiência, atualmente na <strong style="color:var(--white)">TikTok EMEA</strong> em Dublin, Irlanda — suportando 5.000+ dispositivos em Dublin, Madrid e Milão. Meu trabalho abrange gestão de ativos (ITAM), identidade e acesso (IAM), infraestrutura, conformidade de segurança e DFIR. Me mudei do Brasil para a Irlanda em 2012 e desde então construí uma carreira focada em arquitetura Zero Trust, segurança empresarial e excelência operacional.
+      </p>
     </div>
-    <div class="info-grid">
-      <div class="info-card">
-        <div class="info-label">Contact</div>
-        <div class="info-row">📧 marcus.gestor@me.com</div>
-        <div class="info-row">📍 Dublin, Ireland</div>
-        <div class="info-row">🇧🇷 Originally from Brazil</div>
-        <div class="info-row">🗣️ English · Portuguese</div>
+
+    <div class="about-grid fade-in">
+      <div class="about-card">
+        <div class="about-card-icon">🏗️</div>
+        <h3 data-lang="en">Build from Scratch</h3>
+        <h3 data-lang="pt">Construir do Zero</h3>
+        <p data-lang="en">Set up full IT infrastructure from ground up — ITAM, IAM, monitoring dashboards (Grafana), and MDM pipelines. No playbook needed.</p>
+        <p data-lang="pt">Implantação completa de infraestrutura de TI do zero — ITAM, IAM, dashboards de monitoramento (Grafana) e pipelines MDM. Sem manuais prontos.</p>
       </div>
-      <div class="info-card">
-        <div class="info-label">Profiles</div>
-        <div class="info-row">💼 <a href="https://linkedin.com/in/marcuspaula" target="_blank">linkedin.com/in/marcuspaula</a></div>
-        <div class="info-row">💻 <a href="https://github.com/Maikmax" target="_blank">github.com/Maikmax</a></div>
-        <div class="info-row">🌐 <a href="https://maikmax.github.io/marcuspaula/" target="_blank">maikmax.github.io/marcuspaula</a></div>
-        <div class="info-row">🟢 HackTheBox: <span class="hl">MaikPro</span></div>
-        <div class="info-row">🎓 ORCID: 0009-0005-6224-1381</div>
+      <div class="about-card">
+        <div class="about-card-icon">📊</div>
+        <h3 data-lang="en">Deliver Results</h3>
+        <h3 data-lang="pt">Entregar Resultados</h3>
+        <p data-lang="en">Asset visibility from 40% to 99%, 50% process cost reduction, and MCU server upgrade delivering 70% effectiveness improvement.</p>
+        <p data-lang="pt">Visibilidade de ativos de 40% para 99%, redução de 50% em custos de processo, e upgrade de servidor MCU com melhoria de 70% em efetividade.</p>
       </div>
-      <div class="info-card">
-        <div class="info-label">Open To</div>
-        <div class="info-row">✅ IT Manager</div>
-        <div class="info-row">✅ IT Operations Lead (target role)</div>
-        <div class="info-row">✅ Security Operations</div>
-        <div class="info-row">✅ IAM Lead · EMEA IT</div>
+      <div class="about-card">
+        <div class="about-card-icon">🌍</div>
+        <h3 data-lang="en">Operate at Scale</h3>
+        <h3 data-lang="pt">Operar em Escala</h3>
+        <p data-lang="en">Multi-site EMEA operations: Dublin · Madrid · Milan. Onboarding, offboarding, asset transfers and compliance across 7 countries.</p>
+        <p data-lang="pt">Operações EMEA multi-site: Dublin · Madrid · Milão. Onboarding, offboarding, transferências de ativos e conformidade em 7 países.</p>
+      </div>
+      <div class="about-card">
+        <div class="about-card-icon">🔐</div>
+        <h3 data-lang="en">Security Foundation</h3>
+        <h3 data-lang="pt">Base em Segurança</h3>
+        <p data-lang="en">47+ certifications including Zero Trust, 14 AWS certs, ISC2, DFIR. Placed 4th solo in the Zero Days CTF — no team, no preparation.</p>
+        <p data-lang="pt">47+ certificações incluindo Zero Trust, 14 certs AWS, ISC2, DFIR. 4º lugar solo no Zero Days CTF — sem equipe, sem preparação.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════
-     WHAT I BRING
-══════════════════════════════════════ -->
-<section id="brings">
+<!-- ═══════════════════════════════
+     EXPERIENCE
+════════════════════════════════ -->
+<section id="experience">
   <div class="container">
-    <div class="section-header">
-      <div class="section-icon">⚡</div>
+    <div class="sec-head fade-in">
+      <div class="sec-icon">💼</div>
       <div>
-        <div class="section-title">What I Bring</div>
-        <div class="section-sub">Four pillars that define my professional value</div>
-      </div>
-    </div>
-    <div class="bring-grid">
-      <div class="bring-card">
-        <div class="bring-icon">🏗️</div>
-        <div class="bring-title">I Build From Scratch</div>
-        <div class="bring-text">No playbook? No problem. I built TikTok EMEA's entire asset management programme from zero — 99% visibility across 5,000+ devices in 3 sites.</div>
-      </div>
-      <div class="bring-card">
-        <div class="bring-icon">📊</div>
-        <div class="bring-title">I Deliver Measurable Results</div>
-        <div class="bring-text">Every project I lead ends with numbers. 50% cost reduction. 80% efficiency gain. 90% quality improvement. Results, not stories.</div>
-      </div>
-      <div class="bring-card">
-        <div class="bring-icon">🌍</div>
-        <div class="bring-title">I Operate at Scale</div>
-        <div class="bring-text">7 countries, 5,000+ devices, weekly EMEA syncs. I manage multi-site IT operations with the same precision as single-site work.</div>
-      </div>
-      <div class="bring-card">
-        <div class="bring-icon">🔐</div>
-        <div class="bring-title">Security Is My Foundation</div>
-        <div class="bring-text">Zero Trust certified. NCI Postgrad DFIR. 4th place CTF solo. 47+ certs. Security isn't a layer I add — it's how I think from day one.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════
-     TIKTOK EMEA
-══════════════════════════════════════ -->
-<section id="tiktok">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-icon">🏢</div>
-      <div>
-        <div class="section-title">TikTok EMEA — IT Operations Lead</div>
-        <div class="section-sub">Jan 2022 – Present &nbsp;·&nbsp; Dublin, Ireland &nbsp;·&nbsp; ByteDance / TikTok</div>
+        <div class="sec-title" data-lang="en">Experience</div>
+        <div class="sec-title" data-lang="pt">Experiência</div>
+        <div class="sec-sub" data-lang="en">20-year journey across Brazil and Ireland</div>
+        <div class="sec-sub" data-lang="pt">20 anos entre Brasil e Irlanda</div>
       </div>
     </div>
 
-    <div class="metrics-grid">
-      <div class="metric-card">
-        <span class="metric-num counter" data-target="99" data-suffix="%">0%</span>
-        <div class="metric-label">Asset Visibility<br/>5,000+ devices</div>
-      </div>
-      <div class="metric-card">
-        <span class="metric-num">−50%</span>
-        <div class="metric-label">Process Cost<br/>& Time Reduction</div>
-      </div>
-      <div class="metric-card">
-        <span class="metric-num counter" data-target="80" data-suffix="%">0%</span>
-        <div class="metric-label">Manager Efficiency<br/>Improvement</div>
-      </div>
-      <div class="metric-card">
-        <span class="metric-num counter" data-target="50" data-suffix="%">0%</span>
-        <div class="metric-label">MCU Server<br/>Effectiveness</div>
-      </div>
-      <div class="metric-card">
-        <span class="metric-num counter" data-target="90" data-suffix="%">0%</span>
-        <div class="metric-label">User Image<br/>Quality Gain</div>
-      </div>
-      <div class="metric-card">
-        <span class="metric-num counter" data-target="7" data-suffix="">0</span>
-        <div class="metric-label">Countries<br/>Covered</div>
-      </div>
-    </div>
-
-    <div class="card mt-32">
-      <div class="card-header">
+    <!-- TikTok -->
+    <div class="card fade-in">
+      <div class="card-row">
         <div>
-          <div class="card-title">Full Scope of Responsibilities</div>
-          <div class="card-company">Dublin · Madrid · Milan · London · Spain · Italy · Sweden</div>
+          <div class="card-title" data-lang="en">IT Engineer — TikTok EMEA</div>
+          <div class="card-title" data-lang="pt">Engenheiro de TI — TikTok EMEA</div>
+          <div class="card-co">TikTok · ByteDance</div>
         </div>
-        <div class="card-date">Contract → Full-time</div>
+        <span class="chip" data-lang="en">Dublin · 2022 – Present</span>
+        <span class="chip" data-lang="pt">Dublin · 2022 – Atual</span>
       </div>
-      <table class="resp-table">
-        <thead><tr><th style="width:130px">Area</th><th>Full Ownership</th></tr></thead>
-        <tbody>
-          <tr><td class="resp-area">ITAM</td><td>Asset lifecycle · procurement · audits · stock control · disposal · OS imaging WIN/Linux · IMDS deployment</td></tr>
-          <tr><td class="resp-area">IAM</td><td>Active Directory lifecycle · user provisioning · onboarding/offboarding · VPN · Crypt Access</td></tr>
-          <tr><td class="resp-area">Infrastructure</td><td>LAN/WAN · Wi-Fi setup · MDM (Puppet · SEP · JAMF) · Meeting Rooms/AV · Mobile iOS/Android · Printers</td></tr>
-          <tr><td class="resp-area">Documentation</td><td>Knowledgebase · policies · runbooks · guides · change control via Feishu/Lark</td></tr>
-          <tr><td class="resp-area">Projects</td><td>MCU server upgrade · EMEA room systems · bulk monitor procurement · IT RTO Guide Dublin</td></tr>
-          <tr><td class="resp-area">Compliance</td><td>IT Audits · JIRA ticketing · GDPR · Global Trade Compliance · USDS Protected Data Handling</td></tr>
-          <tr><td class="resp-area">Monitoring</td><td>Grafana dashboards (Office-Wireless V2.0) · IMDS deployment tracking · KnightEdge inventory</td></tr>
-          <tr><td class="resp-area">Regional Ops</td><td>EMEA Weekly Meetings · multi-site asset transfers · New Hires onboarding Spain · Italy · Sweden</td></tr>
-        </tbody>
-      </table>
-      <div class="tags mt-16">
-        <span class="tag">Feishu/Lark</span><span class="tag">JIRA</span><span class="tag">Puppet</span>
-        <span class="tag">SEP</span><span class="tag">JAMF</span><span class="tag">Grafana</span>
-        <span class="tag">IMDS</span><span class="tag">KnightEdge</span><span class="tag">Active Directory</span>
-        <span class="tag">Zoom</span><span class="tag">MDM</span><span class="tag">GDPR</span>
+      <p data-lang="en">Supporting 5,000+ devices across EMEA (Dublin, Madrid, Milan). Responsible for ITAM, IAM (Active Directory lifecycle, onboarding/offboarding, VPN), infrastructure (LAN/WAN, MDM with Puppet, SEP, JAMF), documentation (Feishu/Lark), compliance (GDPR, USDS), and Grafana monitoring. Promoted from contract to full-time.</p>
+      <p data-lang="pt">Suporte a 5.000+ dispositivos em toda a EMEA (Dublin, Madrid, Milão). Responsável por ITAM, IAM (ciclo de vida do Active Directory, onboarding/offboarding, VPN), infraestrutura (LAN/WAN, MDM com Puppet, SEP, JAMF), documentação (Feishu/Lark), conformidade (GDPR, USDS) e monitoramento Grafana. Promovido de contrato para efetivo.</p>
+    </div>
+
+    <!-- NCI -->
+    <div class="card fade-in">
+      <div class="card-row">
+        <div>
+          <div class="card-title" data-lang="en">IT Infrastructure Studies</div>
+          <div class="card-title" data-lang="pt">Estudos em Infraestrutura de TI</div>
+          <div class="card-co">National College of Ireland (NCI)</div>
+        </div>
+        <span class="chip">Dublin · On Hold</span>
       </div>
+      <p data-lang="en">Higher Certificate in Science in Computing — Infrastructure specialisation. Paused due to TikTok role commitment.</p>
+      <p data-lang="pt">Certificado Superior em Ciências da Computação — especialização em infraestrutura. Pausado devido ao compromisso com a TikTok.</p>
+    </div>
+
+    <!-- Freelance -->
+    <div class="card fade-in">
+      <div class="card-row">
+        <div>
+          <div class="card-title" data-lang="en">Freelance IT Consultant</div>
+          <div class="card-title" data-lang="pt">Consultor de TI Freelance</div>
+          <div class="card-co">Independent · Dublin</div>
+        </div>
+        <span class="chip" data-lang="en">Dublin · 1 yr</span>
+        <span class="chip" data-lang="pt">Dublin · 1 ano</span>
+      </div>
+      <p data-lang="en">Advisory on GRC, GDPR compliance, VPN architecture, and security policy for SMBs in Ireland. Delivered tailored IT governance frameworks and risk assessments.</p>
+      <p data-lang="pt">Assessoria em GRC, conformidade GDPR, arquitetura VPN e política de segurança para PMEs na Irlanda. Entrega de frameworks de governança de TI e avaliações de risco personalizadas.</p>
+    </div>
+
+    <!-- Minera -->
+    <div class="card fade-in">
+      <div class="card-row">
+        <div>
+          <div class="card-title" data-lang="en">IT Infrastructure Engineer</div>
+          <div class="card-title" data-lang="pt">Engenheiro de Infraestrutura de TI</div>
+          <div class="card-co" data-lang="en">Mining Company · Kilcullen, Ireland</div>
+          <div class="card-co" data-lang="pt">Empresa de Mineração · Kilcullen, Irlanda</div>
+        </div>
+        <span class="chip" data-lang="en">2.5 yrs</span>
+        <span class="chip" data-lang="pt">2,5 anos</span>
+      </div>
+      <p data-lang="en">Enterprise IT in an industrial mining environment. Long-term infrastructure management covering networks, security, and end-user support across multiple sites.</p>
+      <p data-lang="pt">TI empresarial em ambiente industrial de mineração. Gestão de infraestrutura de longo prazo cobrindo redes, segurança e suporte ao usuário final em múltiplos sites.</p>
+    </div>
+
+    <!-- Dublin early -->
+    <div class="card fade-in">
+      <div class="card-row">
+        <div>
+          <div class="card-title" data-lang="en">Senior IT Support & Infrastructure</div>
+          <div class="card-title" data-lang="pt">Suporte Sênior de TI e Infraestrutura</div>
+          <div class="card-co" data-lang="en">Various Companies · Dublin</div>
+          <div class="card-co" data-lang="pt">Diversas Empresas · Dublin</div>
+        </div>
+        <span class="chip" data-lang="en">Dublin · 7+ yrs</span>
+        <span class="chip" data-lang="pt">Dublin · 7+ anos</span>
+      </div>
+      <p data-lang="en">Progressive IT roles across Dublin-based companies since arriving in Ireland in 2012. Built expertise in Active Directory, networking, end-user support, and IT operations management.</p>
+      <p data-lang="pt">Funções progressivas de TI em empresas de Dublin desde a chegada à Irlanda em 2012. Construiu expertise em Active Directory, redes, suporte ao usuário e gestão de operações de TI.</p>
+    </div>
+
+    <!-- Brazil -->
+    <div class="card fade-in">
+      <div class="card-row">
+        <div>
+          <div class="card-title" data-lang="en">IT Technician — Career Start</div>
+          <div class="card-title" data-lang="pt">Técnico de TI — Início de Carreira</div>
+          <div class="card-co">Brazil</div>
+        </div>
+        <span class="chip" data-lang="en">2004 – 2012</span>
+        <span class="chip" data-lang="pt">2004 – 2012</span>
+      </div>
+      <p data-lang="en">The start of a 20-year IT journey. Hardware, networking, and enterprise support roles across Brazil before relocating to Ireland.</p>
+      <p data-lang="pt">O início de uma jornada de 20 anos em TI. Hardware, redes e suporte empresarial no Brasil antes de se mudar para a Irlanda.</p>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════
-     TIMELINE
-══════════════════════════════════════ -->
-<section id="timeline">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-icon">⏱️</div>
-      <div>
-        <div class="section-title">20-Year Career Timeline</div>
-        <div class="section-sub">Brazil (2004) → Ireland (2012) → TikTok EMEA (2022)</div>
-      </div>
-    </div>
-    <div class="timeline">
-
-      <div class="timeline-item">
-        <div class="timeline-dot current"></div>
-        <div class="timeline-year">2022 – Present</div>
-        <div class="card">
-          <div class="card-header">
-            <div><div class="card-title">IT Infrastructure Engineer → IT Engineer</div><div class="card-company">TikTok / ByteDance — EMEA</div></div>
-            <div class="card-date">Dublin, Ireland · Current</div>
-          </div>
-          <p>Started as contract IT Infrastructure Engineer (Jan 2022), promoted to full-time IT Engineer (Mar 2023). Full ownership of EMEA IT operations across 7 countries and 5,000+ devices. Built asset management process from scratch, led MCU server upgrade, managed compliance and documentation for the entire region.</p>
-          <div class="tags"><span class="tag tag-green">✅ Current Role</span><span class="tag">ITAM</span><span class="tag">IAM</span><span class="tag">Grafana</span><span class="tag">JAMF</span><span class="tag">Puppet</span><span class="tag">EMEA</span></div>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-year">Aug – Dec 2021</div>
-        <div class="card">
-          <div class="card-header">
-            <div><div class="card-title">Security Officer Centre</div><div class="card-company">Provincial — on-site @ TikTok Dublin</div></div>
-            <div class="card-date">Dublin · 5 months</div>
-          </div>
-          <p>Physical and cyber security integration at TikTok's Dublin centre. GRC, GDPR, access control, CCTV and incident response. First direct exposure to TikTok enterprise operations — led to full IT engineering role.</p>
-          <div class="tags"><span class="tag">GRC</span><span class="tag">GDPR</span><span class="tag">Access Control</span><span class="tag">Incident Response</span></div>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-year">2020 – 2021</div>
-        <div class="card">
-          <div class="card-header">
-            <div><div class="card-title">Cyber Security Consultant</div><div class="card-company">NNK Real Estate Investment Management</div></div>
-            <div class="card-date">Freelance · Dublin · 1yr</div>
-          </div>
-          <p>Advisory on GRC, GDPR compliance, VPN architecture, risk management and incident response for a real estate investment firm. Applied NCI academic knowledge in a live commercial environment.</p>
-          <div class="tags"><span class="tag">GRC</span><span class="tag">GDPR</span><span class="tag">VPN</span><span class="tag">Risk Advisory</span></div>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-year">2020 – Present</div>
-        <div class="card">
-          <div class="card-header">
-            <div><div class="card-title">Postgraduate Diploma — Cyber Security (DFIR)</div><div class="card-company">National College of Ireland</div></div>
-            <div class="card-date">NCI Dublin · In Hold</div>
-          </div>
-          <p>Specialisation in Cyber/Computer Forensics and Counterterrorism. Covered network security, pen testing, digital forensics, malware analysis (REMnux, YARA), memory forensics, eDiscovery, iOS/Android/Windows forensics, Wireshark, NetworkMiner and incident response simulations.</p>
-          <div class="tags"><span class="tag">Wireshark</span><span class="tag">REMnux</span><span class="tag">YARA</span><span class="tag">Memory Forensics</span><span class="tag">eDiscovery</span><span class="tag">Malware Analysis</span></div>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-year">Apr 2019 – Aug 2021</div>
-        <div class="card">
-          <div class="card-header">
-            <div><div class="card-title">Security Officer</div><div class="card-company">Provincial — Facebook & Ford facilities</div></div>
-            <div class="card-date">Kilcullen, Ireland · 2yrs 5m</div>
-          </div>
-          <p>Physical and information security at two major enterprise sites. Access control, CCTV management, incident reporting and multicultural team operations across Facebook and Ford facilities.</p>
-          <div class="tags"><span class="tag">Access Control</span><span class="tag">CCTV</span><span class="tag">Incident Reporting</span><span class="tag">Physical Security</span></div>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-year">2017 – 2018</div>
-        <div class="card">
-          <div class="card-header">
-            <div><div class="card-title">Enterprise Development Programme</div><div class="card-company">Technological University Dublin (TU Dublin)</div></div>
-            <div class="card-date">Dublin · Diploma Awarded</div>
-          </div>
-          <p>Business development, operational strategy, risk awareness and financial services. Led group projects and mentored peers. Recognised by programme director for leadership, interpersonal skills and commitment.</p>
-          <div class="tags"><span class="tag tag-green">✅ Diploma Awarded</span><span class="tag">Leadership</span><span class="tag">Strategy</span><span class="tag">Business Dev</span></div>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-year">2012 – 2020</div>
-        <div class="card">
-          <div class="card-header">
-            <div><div class="card-title">IT Infrastructure Engineer</div><div class="card-company">Academic Bridge — English School</div></div>
-            <div class="card-date">Dublin, Ireland · 7+ years</div>
-          </div>
-          <p>Long-term infrastructure role managing networks, VPN, desktop support, Windows Server and full IT operations for a growing educational institution in Dublin. Foundation of deep enterprise IT expertise built over 7+ years.</p>
-          <div class="tags"><span class="tag">VPN</span><span class="tag">LAN/WAN</span><span class="tag">Windows Server</span><span class="tag">Networking</span><span class="tag">Desktop Support</span></div>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-year">2009 – 2011</div>
-        <div class="card">
-          <div class="card-header">
-            <div><div class="card-title">IT Infrastructure Specialist</div><div class="card-company">Minerita Minerios Itauna Ltda.</div></div>
-            <div class="card-date">Brazil · Full-time · 2 years</div>
-          </div>
-          <p>Enterprise IT in an industrial mining environment. VPN, servers, infrastructure management and operational technology support for one of Brazil's mineral extraction companies.</p>
-          <div class="tags"><span class="tag">VPN</span><span class="tag">Infrastructure</span><span class="tag">Industrial IT</span><span class="tag">Brazil</span></div>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-year">2004 – 2009</div>
-        <div class="card">
-          <div class="card-header">
-            <div><div class="card-title">IT Support & Helpdesk</div><div class="card-company">Various organisations — Brazil</div></div>
-            <div class="card-date">Brazil · Start of career</div>
-          </div>
-          <p>The beginning of a 20-year IT journey. Hardware maintenance, networking basics, helpdesk support and end-user assistance. Where curiosity for technology became a profession.</p>
-          <div class="tags"><span class="tag">IT Support</span><span class="tag">Helpdesk</span><span class="tag">Hardware</span><span class="tag">Networking</span></div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════
+<!-- ═══════════════════════════════
      SKILLS
-══════════════════════════════════════ -->
+════════════════════════════════ -->
 <section id="skills">
   <div class="container">
-    <div class="section-header">
-      <div class="section-icon">🛠️</div>
+    <div class="sec-head fade-in">
+      <div class="sec-icon">⚡</div>
       <div>
-        <div class="section-title">Technical Skills</div>
-        <div class="section-sub">Proficiency levels based on real professional use</div>
+        <div class="sec-title" data-lang="en">Technical Skills</div>
+        <div class="sec-title" data-lang="pt">Habilidades Técnicas</div>
+        <div class="sec-sub" data-lang="en">Core competencies built over 20 years</div>
+        <div class="sec-sub" data-lang="pt">Competências centrais desenvolvidas em 20 anos</div>
       </div>
     </div>
-    <div class="skills-grid" id="skills-grid">
 
-      <div class="skill-group">
-        <div class="skill-group-title">Security & Architecture</div>
-        <div class="skill-item"><div class="skill-row"><span class="skill-name">Zero Trust Architecture</span><span class="skill-pct">95%</span></div><div class="skill-bar"><div class="skill-fill" data-width="95"></div></div></div>
-        <div class="skill-item"><div class="skill-row"><span class="skill-name">IAM / Active Directory</span><span class="skill-pct">95%</span></div><div class="skill-bar"><div class="skill-fill" data-width="95"></div></div></div>
-        <div class="skill-item"><div class="skill-row"><span class="skill-name">GRC / Compliance / GDPR</span><span class="skill-pct">90%</span></div><div class="skill-bar"><div class="skill-fill" data-width="90"></div></div></div>
-        <div class="skill-item"><div class="skill-row"><span class="skill-name">VPN Enterprise</span><span class="skill-pct">90%</span></div><div class="skill-bar"><div class="skill-fill" data-width="90"></div></div></div>
-        <div class="skill-item"><div class="skill-row"><span class="skill-name">MITRE ATT&CK</span><span class="skill-pct">80%</span></div><div class="skill-bar"><div class="skill-fill" data-width="80"></div></div></div>
-        <div class="skill-item"><div class="skill-row"><span class="skill-name">Penetration Testing</span><span class="skill-pct">65%</span></div><div class="skill-bar"><div class="skill-fill" data-width="65"></div></div></div>
+    <div class="card fade-in" style="display:grid;grid-template-columns:1fr 1fr;gap:32px 40px;">
+      <div>
+        <div class="skill-group">
+          <div class="skill-label">
+            <span data-lang="en">Security & Zero Trust</span>
+            <span data-lang="pt">Segurança & Zero Trust</span>
+            <span class="skill-pct">92%</span>
+          </div>
+          <div class="skill-bar"><div class="skill-fill" data-width="92"></div></div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-label">
+            <span data-lang="en">DFIR & Forensics</span>
+            <span data-lang="pt">DFIR & Forense</span>
+            <span class="skill-pct">85%</span>
+          </div>
+          <div class="skill-bar"><div class="skill-fill" data-width="85"></div></div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-label">
+            <span>IAM / Active Directory</span>
+            <span class="skill-pct">90%</span>
+          </div>
+          <div class="skill-bar"><div class="skill-fill" data-width="90"></div></div>
+        </div>
       </div>
-
-      <div class="skill-group">
-        <div class="skill-group-title">DFIR</div>
-        <div class="skill-item"><div class="skill-row"><span class="skill-name">Digital Forensics</span><span class="skill-pct">82%</span></div><div class="skill-bar"><div class="skill-fill" data-width="82"></div></div></div>
-        <div class="skill-item"><div class="skill-row"><span class="skill-name">Incident Response</span><span class="skill-pct">85%</span></div><div class="skill-bar"><div class="skill-fill" data-width="85"></div></div></div>
-        <div class="skill-item"><div class="skill-row"><span class="skill-name">Memory Forensics</span><span class="skill-pct">75%</span></div><div class="skill-bar"><div class="skill-fill" data-width="75"></div></div></div>
-        <div class="skill-item"><div class="skill-row"><span class="skill-name">Wireshark / NetworkMiner</span><span class="skill-pct">78%</span></div><div class="skill-bar"><div class="skill-fill" data-width="78"></div></div></div>
-        <div class="skill-item"><div class="skill-row"><span class="skill-name">REMnux / YARA</span><span class="skill-pct">68%</span></div><div class="skill-bar"><div class="skill-fill" data-width="68"></div></div></div>
-        <div class="skill-item"><div class="skill-row"><span class="skill-name">iOS / Android Forensics</span><span class="skill-pct">70%</span></div><div class="skill-bar"><div class="skill-fill" data-width="70"></div></div></div>
+      <div>
+        <div class="skill-group">
+          <div class="skill-label">
+            <span data-lang="en">IT Operations & ITAM</span>
+            <span data-lang="pt">Operações de TI & ITAM</span>
+            <span class="skill-pct">95%</span>
+          </div>
+          <div class="skill-bar"><div class="skill-fill" data-width="95"></div></div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-label">
+            <span data-lang="en">AWS Cloud Security</span>
+            <span data-lang="pt">Segurança AWS Cloud</span>
+            <span class="skill-pct">82%</span>
+          </div>
+          <div class="skill-bar"><div class="skill-fill" data-width="82"></div></div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-label">
+            <span data-lang="en">Networking & Infrastructure</span>
+            <span data-lang="pt">Redes & Infraestrutura</span>
+            <span class="skill-pct">88%</span>
+          </div>
+          <div class="skill-bar"><div class="skill-fill" data-width="88"></div></div>
+        </div>
       </div>
+    </div>
 
-      <div class="skill-group">
-        <div class="skill-group-title">IT Operations</div>
-        <div class="skill-item"><div class="skill-row"><span class="skill-name">ITAM / Asset Management</span><span class="skill-pct">98%</span></div><div class="skill-bar"><div class="skill-fill" data-width="98"></div></div></div>
-        <div class="skill-item"><div class="skill-row"><span class="skill-name">MDM (JAMF · Puppet · SEP)</span><span class="skill-pct">92%</span></div><div class="skill-bar"><div class="skill-fill" data-width="92"></div></div></div>
-        <div class="skill-item"><div class="skill-row"><span class="skill-name">LAN/WAN Networking</span><span class="skill-pct">95%</span></div><div class="skill-bar"><div class="skill-fill" data-width="95"></div></div></div>
-        <div class="skill-item"><div class="skill-row"><span class="skill-name">OS Imaging WIN/Linux</span><span class="skill-pct">90%</span></div><div class="skill-bar"><div class="skill-fill" data-width="90"></div></div></div>
-        <div class="skill-item"><div class="skill-row"><span class="skill-name">ITSM / JIRA</span><span class="skill-pct">93%</span></div><div class="skill-bar"><div class="skill-fill" data-width="93"></div></div></div>
-        <div class="skill-item"><div class="skill-row"><span class="skill-name">Grafana Monitoring</span><span class="skill-pct">80%</span></div><div class="skill-bar"><div class="skill-fill" data-width="80"></div></div></div>
-      </div>
-
-      <div class="skill-group">
-        <div class="skill-group-title">Cloud (AWS)</div>
-        <div class="skill-item"><div class="skill-row"><span class="skill-name">AWS IAM</span><span class="skill-pct">85%</span></div><div class="skill-bar"><div class="skill-fill" data-width="85"></div></div></div>
-        <div class="skill-item"><div class="skill-row"><span class="skill-name">AWS Inspector / Macie</span><span class="skill-pct">80%</span></div><div class="skill-bar"><div class="skill-fill" data-width="80"></div></div></div>
-        <div class="skill-item"><div class="skill-row"><span class="skill-name">AWS STS / KMS</span><span class="skill-pct">78%</span></div><div class="skill-bar"><div class="skill-fill" data-width="78"></div></div></div>
-        <div class="skill-item"><div class="skill-row"><span class="skill-name">Cloud Security Posture</span><span class="skill-pct">80%</span></div><div class="skill-bar"><div class="skill-fill" data-width="80"></div></div></div>
-        <div class="skill-item"><div class="skill-row"><span class="skill-name">Data Encryption</span><span class="skill-pct">82%</span></div><div class="skill-bar"><div class="skill-fill" data-width="82"></div></div></div>
-      </div>
-
+    <div style="margin-top:14px;display:flex;flex-wrap:wrap;gap:8px;" class="fade-in">
+      <span class="cert-tag">Puppet</span><span class="cert-tag">JAMF</span><span class="cert-tag">SEP</span>
+      <span class="cert-tag">Grafana</span><span class="cert-tag">IMDS</span><span class="cert-tag">KnightEdge</span>
+      <span class="cert-tag">Feishu/Lark</span><span class="cert-tag">JIRA</span><span class="cert-tag">Wireshark</span>
+      <span class="cert-tag">REMnux</span><span class="cert-tag">YARA</span><span class="cert-tag">MITRE ATT&CK</span>
+      <span class="cert-tag">GDPR</span><span class="cert-tag">NIST</span><span class="cert-tag">ISO 27001</span>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════
+<!-- ═══════════════════════════════
      CERTIFICATIONS
-══════════════════════════════════════ -->
+════════════════════════════════ -->
 <section id="certifications">
   <div class="container">
-    <div class="section-header">
-      <div class="section-icon">📜</div>
+    <div class="sec-head fade-in">
+      <div class="sec-icon">🎓</div>
       <div>
-        <div class="section-title">Certifications — 47+</div>
-        <div class="section-sub">Security · AWS · DFIR · Compliance · TikTok Enterprise</div>
+        <div class="sec-title" data-lang="en">Certifications — 47+</div>
+        <div class="sec-title" data-lang="pt">Certificações — 47+</div>
+        <div class="sec-sub" data-lang="en">AWS · ISC2 · Zero Trust · DFIR · TikTok Enterprise</div>
+        <div class="sec-sub" data-lang="pt">AWS · ISC2 · Zero Trust · DFIR · TikTok Enterprise</div>
       </div>
     </div>
 
-    <div class="cert-group">
-      <div class="cert-group-title">🔐 Security & Architecture</div>
-      <div class="cert-list">
-        <div class="cert-item"><span class="cert-name">Zero Trust Architecture — Cyber Security Model</span><div class="cert-meta"><span class="cert-issuer">State Bank of India</span>2026</div></div>
-        <div class="cert-item"><span class="cert-name">Domain 1: Security Principles (ISC2 CC)</span><div class="cert-meta"><span class="cert-issuer">ISC2</span>2024</div></div>
-        <div class="cert-item"><span class="cert-name">Foundations of Operationalizing MITRE ATT&CK</span><div class="cert-meta"><span class="cert-issuer">AttackIQ</span>2021</div></div>
-        <div class="cert-item"><span class="cert-name">Certified Network Security Specialist</span><div class="cert-meta"><span class="cert-issuer">DefensityOne</span>2020</div></div>
-        <div class="cert-item"><span class="cert-name">Security Awareness Training</span><div class="cert-meta"><span class="cert-issuer">ISC2</span>2022</div></div>
-        <div class="cert-item"><span class="cert-name">Protecting Your Network with Open-Source Software</span><div class="cert-meta"><span class="cert-issuer">Lynda.com</span>2020</div></div>
-        <div class="cert-item"><span class="cert-name">Cyber Security</span><div class="cert-meta"><span class="cert-issuer">e-Courses4you</span>2020</div></div>
+    <div class="card fade-in">
+      <div class="cert-section">
+        <div class="cert-group-title" data-lang="en">🔐 Security & Architecture</div>
+        <div class="cert-group-title" data-lang="pt">🔐 Segurança & Arquitetura</div>
+        <div class="cert-tags">
+          <span class="cert-tag">Zero Trust Architecture — Cyber Security Model</span>
+          <span class="cert-tag">Certified in Cybersecurity (CC) — ISC2</span>
+          <span class="cert-tag">Introduction to Cybersecurity — Cisco</span>
+          <span class="cert-tag">Ethical Hacker — Cisco</span>
+          <span class="cert-tag">Cybersecurity Fundamentals — IBM</span>
+          <span class="cert-tag">IT Support & Help Desk — Google</span>
+          <span class="cert-tag">AI Fundamentals — IBM</span>
+        </div>
+      </div>
+
+      <div class="cert-section">
+        <div class="cert-group-title">☁️ AWS Cloud Security — 14</div>
+        <div class="cert-tags">
+          <span class="cert-tag">AWS IAM</span>
+          <span class="cert-tag">AWS Inspector</span>
+          <span class="cert-tag">AWS Macie</span>
+          <span class="cert-tag">AWS Security Hub</span>
+          <span class="cert-tag">AWS CloudTrail</span>
+          <span class="cert-tag">AWS KMS</span>
+          <span class="cert-tag">AWS STS</span>
+          <span class="cert-tag">AWS Shield</span>
+          <span class="cert-tag">AWS GuardDuty</span>
+          <span class="cert-tag">AWS WAF</span>
+          <span class="cert-tag">AWS Config</span>
+          <span class="cert-tag">AWS VPC Security</span>
+          <span class="cert-tag">AWS S3 Security</span>
+          <span class="cert-tag">AWS Trusted Advisor</span>
+        </div>
+      </div>
+
+      <div class="cert-section">
+        <div class="cert-group-title" data-lang="en">🔍 DFIR & Forensics — 5</div>
+        <div class="cert-group-title" data-lang="pt">🔍 DFIR & Forense — 5</div>
+        <div class="cert-tags">
+          <span class="cert-tag" data-lang="en">Digital Forensics Essentials — EC-Council</span>
+          <span class="cert-tag" data-lang="pt">Fundamentos de Forense Digital — EC-Council</span>
+          <span class="cert-tag">Memory Forensics — Volatility</span>
+          <span class="cert-tag">Linux Forensics</span>
+          <span class="cert-tag">Windows Forensics</span>
+          <span class="cert-tag">iOS & Android Forensics</span>
+        </div>
+      </div>
+
+      <div class="cert-section">
+        <div class="cert-group-title" data-lang="en">🖥️ Infrastructure — 4</div>
+        <div class="cert-group-title" data-lang="pt">🖥️ Infraestrutura — 4</div>
+        <div class="cert-tags">
+          <span class="cert-tag">Active Directory Administration</span>
+          <span class="cert-tag">Network+ Foundations</span>
+          <span class="cert-tag">MDM: JAMF & Intune</span>
+          <span class="cert-tag">Grafana Monitoring</span>
+        </div>
+      </div>
+
+      <div class="cert-section">
+        <div class="cert-group-title" data-lang="en">🏢 TikTok Enterprise — 15</div>
+        <div class="cert-group-title" data-lang="pt">🏢 TikTok Enterprise — 15</div>
+        <div class="cert-tags">
+          <span class="cert-tag">ITAM Fundamentals</span>
+          <span class="cert-tag">Global IT Operations</span>
+          <span class="cert-tag">Data Compliance & GDPR</span>
+          <span class="cert-tag">USDS Protected Data Handling</span>
+          <span class="cert-tag">Incident Response Procedures</span>
+          <span class="cert-tag">Hardware & Asset Lifecycle</span>
+          <span class="cert-tag">Knowledgebase Management</span>
+          <span class="cert-tag" data-lang="en">+ 8 internal certifications</span>
+          <span class="cert-tag" data-lang="pt">+ 8 certificações internas</span>
+        </div>
       </div>
     </div>
-
-    <div class="cert-group">
-      <div class="cert-group-title">☁️ AWS Cloud Security — 14 Certifications</div>
-      <div class="cert-list">
-        <div class="cert-item"><span class="cert-name">AWS Foundations: Securing Your AWS Cloud</span><div class="cert-meta"><span class="cert-issuer">AWS</span>2020</div></div>
-        <div class="cert-item"><span class="cert-name">Authentication and Authorization with AWS IAM</span><div class="cert-meta"><span class="cert-issuer">AWS</span>2020</div></div>
-        <div class="cert-item"><span class="cert-name">Introduction to AWS Identity and Access Management</span><div class="cert-meta"><span class="cert-issuer">AWS</span>2020</div></div>
-        <div class="cert-item"><span class="cert-name">Introduction to AWS Security Token Services (STS)</span><div class="cert-meta"><span class="cert-issuer">AWS</span>2020</div></div>
-        <div class="cert-item"><span class="cert-name">Introduction to Amazon Inspector</span><div class="cert-meta"><span class="cert-issuer">AWS</span>2020</div></div>
-        <div class="cert-item"><span class="cert-name">Introduction to Amazon Macie</span><div class="cert-meta"><span class="cert-issuer">AWS</span>2020</div></div>
-        <div class="cert-item"><span class="cert-name">Introduction to Data Encryption</span><div class="cert-meta"><span class="cert-issuer">AWS</span>2020</div></div>
-        <div class="cert-item"><span class="cert-name">Understanding Amazon EBS Volume Encryption</span><div class="cert-meta"><span class="cert-issuer">AWS</span>2020</div></div>
-        <div class="cert-item"><span class="cert-name">Protect Your Web-facing Workloads with AWS Security Services</span><div class="cert-meta"><span class="cert-issuer">AWS</span>2020</div></div>
-        <div class="cert-item"><span class="cert-name">AWS Certificate Manager — Private Certificate Authority</span><div class="cert-meta"><span class="cert-issuer">AWS</span>2020</div></div>
-        <div class="cert-item"><span class="cert-name">Differences Between Security Groups and NACLs</span><div class="cert-meta"><span class="cert-issuer">AWS</span>2020</div></div>
-        <div class="cert-item"><span class="cert-name">Introduction to AWS Artifact</span><div class="cert-meta"><span class="cert-issuer">AWS</span>2020</div></div>
-        <div class="cert-item"><span class="cert-name">AWS Foundations: Machine Learning Basics</span><div class="cert-meta"><span class="cert-issuer">AWS</span>2020</div></div>
-        <div class="cert-item"><span class="cert-name">Database, Analytics & Management</span><div class="cert-meta"><span class="cert-issuer">AWS</span>2019</div></div>
-      </div>
-    </div>
-
-    <div class="cert-group">
-      <div class="cert-group-title">🔍 Forensics & Compliance</div>
-      <div class="cert-list">
-        <div class="cert-item"><span class="cert-name">Computer Forensic — First Learning Activity</span><div class="cert-meta"><span class="cert-issuer">TryHackMe</span>2024</div></div>
-        <div class="cert-item"><span class="cert-name">Network Reference Models</span><div class="cert-meta"><span class="cert-issuer">Cybrary</span>2024</div></div>
-        <div class="cert-item"><span class="cert-name">Computer Forensics</span><div class="cert-meta"><span class="cert-issuer">LinkedIn Learning</span>2022</div></div>
-        <div class="cert-item"><span class="cert-name">Forensic Accounting and Fraud Examination</span><div class="cert-meta"><span class="cert-issuer">West Virginia Univ.</span>2022</div></div>
-        <div class="cert-item"><span class="cert-name">GDPR and Data Protection Compliance</span><div class="cert-meta"><span class="cert-issuer">Udemy</span>2020</div></div>
-        <div class="cert-item"><span class="cert-name">Information Management: Document Security</span><div class="cert-meta"><span class="cert-issuer">LinkedIn</span>2022</div></div>
-        <div class="cert-item"><span class="cert-name">IT Security: Key Policies and Resources</span><div class="cert-meta"><span class="cert-issuer">LinkedIn</span>2022</div></div>
-      </div>
-    </div>
-
-    <div class="cert-group">
-      <div class="cert-group-title">🖥️ Infrastructure & Management</div>
-      <div class="cert-list">
-        <div class="cert-item"><span class="cert-name">CompTIA A+ 2019 Core 1 (220-1001)</span><div class="cert-meta"><span class="cert-issuer">Udemy</span>2020</div></div>
-        <div class="cert-item"><span class="cert-name">Database Infrastructure Fundamentals</span><div class="cert-meta"><span class="cert-issuer">Microsoft</span>2018</div></div>
-        <div class="cert-item"><span class="cert-name">Management: Top Tips</span><div class="cert-meta"><span class="cert-issuer">PMI</span>2020</div></div>
-        <div class="cert-item"><span class="cert-name">Communicating with Diplomacy and Tact</span><div class="cert-meta"><span class="cert-issuer">LinkedIn</span>2023</div></div>
-        <div class="cert-item"><span class="cert-name">Security Matters (To Everyone)</span><div class="cert-meta"><span class="cert-issuer">LinkedIn</span>2021</div></div>
-      </div>
-    </div>
-
-    <div class="cert-group">
-      <div class="cert-group-title">🏢 TikTok EMEA — Enterprise Compliance (15)</div>
-      <div class="cert-list">
-        <div class="cert-item"><span class="cert-name">Global Security and Privacy Training</span><div class="cert-meta"><span class="cert-issuer">TikTok Learning</span>2025</div></div>
-        <div class="cert-item"><span class="cert-name">PR & Public Relations & Social Media</span><div class="cert-meta"><span class="cert-issuer">TikTok Global Brand & Comms</span>2025</div></div>
-        <div class="cert-item"><span class="cert-name">USDS Compliance Training for Global TikTok and Byte</span><div class="cert-meta"><span class="cert-issuer">USDS Leadership</span>2024</div></div>
-        <div class="cert-item"><span class="cert-name">Mandatory Information Security Training</span><div class="cert-meta"><span class="cert-issuer">Global Security Organization</span>2024</div></div>
-        <div class="cert-item"><span class="cert-name">Global Data Protection Training</span><div class="cert-meta"><span class="cert-issuer">TikTok Learning</span>2024</div></div>
-        <div class="cert-item"><span class="cert-name">Anti-Bribery & Anti-Corruption (ABAC) Policy</span><div class="cert-meta"><span class="cert-issuer">TikTok EO & GLC</span>2024</div></div>
-        <div class="cert-item"><span class="cert-name">Anti-Bribery & Anti-Corruption (ABAC) Course</span><div class="cert-meta"><span class="cert-issuer">TikTok Learning</span>2024</div></div>
-        <div class="cert-item"><span class="cert-name">Conflicts of Interest</span><div class="cert-meta"><span class="cert-issuer">TikTok Ethics Office</span>2024</div></div>
-        <div class="cert-item"><span class="cert-name">Non-Discrimination & Anti-Harassment (NDAH)</span><div class="cert-meta"><span class="cert-issuer">TikTok Ethics Office</span>2024</div></div>
-        <div class="cert-item"><span class="cert-name">Gifts & Entertainment</span><div class="cert-meta"><span class="cert-issuer">TikTok EO & GLC</span>2024</div></div>
-        <div class="cert-item"><span class="cert-name">Speak Up — Ethics & Reporting</span><div class="cert-meta"><span class="cert-issuer">TikTok Ethics Office</span>2024</div></div>
-        <div class="cert-item"><span class="cert-name">Confidentiality</span><div class="cert-meta"><span class="cert-issuer">TikTok Learning</span>2024</div></div>
-        <div class="cert-item"><span class="cert-name">Lark Document Security Level and Permission Setting</span><div class="cert-meta"><span class="cert-issuer">TikTok Security & Risk</span>2024</div></div>
-        <div class="cert-item"><span class="cert-name">Anti-Money Laundering (AML)</span><div class="cert-meta"><span class="cert-issuer">Global Legal Compliance</span>2023</div></div>
-        <div class="cert-item"><span class="cert-name">Proper Use of Company Assets</span><div class="cert-meta"><span class="cert-issuer">TikTok Learning</span>2023</div></div>
-      </div>
-    </div>
-
   </div>
 </section>
 
-<!-- ══════════════════════════════════════
+<!-- ═══════════════════════════════
      GITHUB
-══════════════════════════════════════ -->
+════════════════════════════════ -->
 <section id="github">
   <div class="container">
-    <div class="section-header">
-      <div class="section-icon">💻</div>
+    <div class="sec-head fade-in">
+      <div class="sec-icon">⬡</div>
       <div>
-        <div class="section-title">GitHub Portfolio</div>
-        <div class="section-sub">github.com/Maikmax — public &amp; private repositories</div>
+        <div class="sec-title">GitHub</div>
+        <div class="sec-sub" data-lang="en">Public repositories · github.com/Maikmax</div>
+        <div class="sec-sub" data-lang="pt">Repositórios públicos · github.com/Maikmax</div>
       </div>
-    </div>
-    <!-- Public repos -->
-    <div class="repos-grid">
-      <a class="repo-card" href="https://github.com/Maikmax/active-directory-automation" target="_blank">
-        <div class="repo-icon">🖥️</div>
-        <div class="repo-name">active-directory-automation</div>
-        <div class="repo-desc">AD lifecycle automation — onboarding, offboarding, access reviews, privileged account audits and weekly health reports. PowerShell · Enterprise IT.</div>
-        <div class="repo-tags"><span class="repo-tag">active-directory</span><span class="repo-tag">powershell</span><span class="repo-tag">iam</span></div>
-      </a>
-      <a class="repo-card" href="https://github.com/Maikmax/aws-security-studies" target="_blank">
-        <div class="repo-icon">☁️</div>
-        <div class="repo-name">aws-security-studies</div>
-        <div class="repo-desc">IAM, S3, CloudTrail, VPC, CIS Benchmark, Security Hub — audit scripts, labs and study notes across 14 AWS Security certifications.</div>
-        <div class="repo-tags"><span class="repo-tag">aws</span><span class="repo-tag">cis-benchmark</span><span class="repo-tag">cloud-security</span></div>
-      </a>
-      <a class="repo-card" href="https://github.com/Maikmax/dfir-investigations" target="_blank">
-        <div class="repo-icon">🔍</div>
-        <div class="repo-name">dfir-investigations</div>
-        <div class="repo-desc">DFIR methodology, Linux &amp; Windows forensics guides, network triage, IoC extraction and tools reference. MITRE ATT&amp;CK mapped.</div>
-        <div class="repo-tags"><span class="repo-tag">dfir</span><span class="repo-tag">forensics</span><span class="repo-tag">mitre</span></div>
-      </a>
-      <a class="repo-card" href="https://github.com/Maikmax/cybersecurity-labs" target="_blank">
-        <div class="repo-icon">🧪</div>
-        <div class="repo-name">cybersecurity-labs</div>
-        <div class="repo-desc">HTB writeups (Hard/Insane), Zero Days CTF — 4th place solo, TryHackMe DFIR labs. MITRE ATT&amp;CK techniques mapped per machine.</div>
-        <div class="repo-tags"><span class="repo-tag">hackthebox</span><span class="repo-tag">ctf</span><span class="repo-tag">tryhackme</span></div>
-      </a>
-      <a class="repo-card" href="https://github.com/Maikmax/certifications" target="_blank">
-        <div class="repo-icon">📜</div>
-        <div class="repo-name">certifications</div>
-        <div class="repo-desc">47+ certifications across 5 domains — AWS (14), ISC2, Zero Trust, DFIR, TikTok EMEA Compliance (15). Organised by domain with real-world impact and certificate images.</div>
-        <div class="repo-tags"><span class="repo-tag">aws</span><span class="repo-tag">isc2</span><span class="repo-tag">zero-trust</span></div>
-      </a>
-      <a class="repo-card" href="https://github.com/Maikmax/Maikmax" target="_blank">
-        <div class="repo-icon">🏠</div>
-        <div class="repo-name">Maikmax (Profile)</div>
-        <div class="repo-desc">GitHub profile — career overview, KPIs, certifications, recommendations and full repository index.</div>
-        <div class="repo-tags"><span class="repo-tag">profile</span><span class="repo-tag">portfolio</span></div>
-      </a>
     </div>
 
-    <!-- Private repos section -->
-    <div style="margin-top:2rem;">
-      <div class="section-sub" style="margin-bottom:1rem; color:var(--gold2);">🔒 Private repositories — available on request</div>
-      <div class="repos-grid">
-        <div class="repo-card" style="cursor:default; opacity:0.85;">
-          <div class="repo-icon">🔐</div>
-          <div class="repo-name">iam-zero-trust-architecture</div>
-          <div class="repo-desc">Enterprise IAM & Zero Trust — case studies, scripts, policies and ZTNA implementation across 5,000+ devices EMEA (Dublin/Madrid/Milan).</div>
-          <div class="repo-tags"><span class="repo-tag">zero-trust</span><span class="repo-tag">iam</span><span class="repo-tag">enterprise</span></div>
-        </div>
-        <div class="repo-card" style="cursor:default; opacity:0.85;">
-          <div class="repo-icon">📋</div>
-          <div class="repo-name">emea-it-operations-playbook</div>
-          <div class="repo-desc">Runbooks, processes, monitoring and automation for multi-site IT ops. Onboarding, offboarding, asset lifecycle, incident response and change control.</div>
-          <div class="repo-tags"><span class="repo-tag">runbooks</span><span class="repo-tag">itam</span><span class="repo-tag">emea</span></div>
-        </div>
-        <div class="repo-card" style="cursor:default; opacity:0.85;">
-          <div class="repo-icon">🛡️</div>
-          <div class="repo-name">security-governance-frameworks</div>
-          <div class="repo-desc">GDPR, NIST CSF/800-53/800-207, ISO 27001:2022, CIS Controls v8 — compliance checklists, controls mapping and automation scripts.</div>
-          <div class="repo-tags"><span class="repo-tag">gdpr</span><span class="repo-tag">nist</span><span class="repo-tag">iso27001</span></div>
-        </div>
-        <div class="repo-card" style="cursor:default; opacity:0.85;">
-          <div class="repo-icon">🔎</div>
-          <div class="repo-name">dfir-playbook</div>
-          <div class="repo-desc">DFIR operational playbook — live triage runbooks, evidence collection scripts, chain of custody templates and incident report frameworks.</div>
-          <div class="repo-tags"><span class="repo-tag">dfir</span><span class="repo-tag">triage</span><span class="repo-tag">incident-response</span></div>
-        </div>
-        <div class="repo-card" style="cursor:default; opacity:0.85;">
-          <div class="repo-icon">🏗️</div>
-          <div class="repo-name">systems-engineering-studies</div>
-          <div class="repo-desc">Systems architecture, requirements management, TOGAF and IT governance frameworks — structured learning and professional reference.</div>
-          <div class="repo-tags"><span class="repo-tag">architecture</span><span class="repo-tag">togaf</span><span class="repo-tag">governance</span></div>
-        </div>
-      </div>
+    <div class="repos fade-in">
+      <a class="repo-card" href="https://github.com/Maikmax/active-directory-automation" target="_blank" rel="noopener">
+        <div class="repo-name">active-directory-automation</div>
+        <div class="repo-desc" data-lang="en">AD lifecycle automation — onboarding, offboarding, and access review scripts for enterprise environments.</div>
+        <div class="repo-desc" data-lang="pt">Automação do ciclo de vida do AD — scripts de onboarding, offboarding e revisão de acessos para ambientes empresariais.</div>
+      </a>
+      <a class="repo-card" href="https://github.com/Maikmax/aws-security-studies" target="_blank" rel="noopener">
+        <div class="repo-name">aws-security-studies</div>
+        <div class="repo-desc" data-lang="en">IAM, S3, CloudTrail, VPC, CIS Benchmark, Security Hub — study notes and audit scripts from 14 AWS certifications.</div>
+        <div class="repo-desc" data-lang="pt">IAM, S3, CloudTrail, VPC, CIS Benchmark, Security Hub — notas de estudo e scripts de auditoria de 14 certificações AWS.</div>
+      </a>
+      <a class="repo-card" href="https://github.com/Maikmax/dfir-investigations" target="_blank" rel="noopener">
+        <div class="repo-name">dfir-investigations</div>
+        <div class="repo-desc" data-lang="en">DFIR methodology, Linux & Windows forensics guides, memory analysis and incident response documentation.</div>
+        <div class="repo-desc" data-lang="pt">Metodologia DFIR, guias de forense Linux & Windows, análise de memória e documentação de resposta a incidentes.</div>
+      </a>
+      <a class="repo-card" href="https://github.com/Maikmax/cybersecurity-labs" target="_blank" rel="noopener">
+        <div class="repo-name">cybersecurity-labs</div>
+        <div class="repo-desc" data-lang="en">HTB writeups (Hard/Insane), Zero Days CTF — 4th place solo. TryHackMe labs and AttackIQ MITRE ATT&CK exercises.</div>
+        <div class="repo-desc" data-lang="pt">Writeups HTB (Hard/Insane), Zero Days CTF — 4º lugar solo. Labs TryHackMe e exercícios AttackIQ MITRE ATT&CK.</div>
+      </a>
+      <a class="repo-card" href="https://github.com/Maikmax/certifications" target="_blank" rel="noopener">
+        <div class="repo-name">certifications</div>
+        <div class="repo-desc" data-lang="en">47+ certifications across 5 domains — AWS (14), Security, DFIR, Infrastructure, TikTok Enterprise.</div>
+        <div class="repo-desc" data-lang="pt">47+ certificações em 5 domínios — AWS (14), Segurança, DFIR, Infraestrutura, TikTok Enterprise.</div>
+      </a>
+      <a class="repo-card" href="https://github.com/Maikmax" target="_blank" rel="noopener">
+        <div class="repo-name">Maikmax (profile)</div>
+        <div class="repo-desc" data-lang="en">GitHub profile — career overview, key metrics, and links to all public and pinned repositories.</div>
+        <div class="repo-desc" data-lang="pt">Perfil GitHub — visão geral da carreira, métricas-chave e links para todos os repositórios públicos e fixados.</div>
+      </a>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════
+<!-- ═══════════════════════════════
      CTF
-══════════════════════════════════════ -->
+════════════════════════════════ -->
 <section id="ctf">
   <div class="container">
-    <div class="section-header">
-      <div class="section-icon">🏆</div>
+    <div class="sec-head fade-in">
+      <div class="sec-icon">🏆</div>
       <div>
-        <div class="section-title">CTF & Offensive Security</div>
-        <div class="section-sub">Hands-on cybersecurity practice beyond certifications</div>
+        <div class="sec-title" data-lang="en">CTF & Offensive Security</div>
+        <div class="sec-title" data-lang="pt">CTF & Segurança Ofensiva</div>
+        <div class="sec-sub" data-lang="en">Competitive security · HackTheBox · TryHackMe</div>
+        <div class="sec-sub" data-lang="pt">Segurança competitiva · HackTheBox · TryHackMe</div>
       </div>
     </div>
-    <div class="ctf-grid">
-      <div class="ctf-card highlight">
-        <div class="ctf-icon">🥉</div>
-        <div class="ctf-name">Zero Days CTF</div>
-        <div class="ctf-detail">Solo competitor — full competition</div>
-        <span class="ctf-badge">4th Place — Solo</span>
+
+    <div class="ctf-grid fade-in">
+      <div class="ctf-card">
+        <div class="ctf-icon">🎯</div>
+        <div class="ctf-title">Zero Days CTF</div>
+        <div class="ctf-detail" data-lang="en">Solo competitor — full competition, no team</div>
+        <div class="ctf-detail" data-lang="pt">Competidor solo — competição completa, sem equipe</div>
+        <div class="ctf-badge" data-lang="en">4th Place — Solo</div>
+        <div class="ctf-badge" data-lang="pt">4º Lugar — Solo</div>
       </div>
       <div class="ctf-card">
-        <div class="ctf-icon">🟢</div>
-        <div class="ctf-name">HackTheBox</div>
-        <div class="ctf-detail">Username: MaikPro · Active</div>
-        <span class="ctf-badge">Active Competitor</span>
-      </div>
-      <div class="ctf-card">
-        <div class="ctf-icon">🔬</div>
-        <div class="ctf-name">TryHackMe</div>
-        <div class="ctf-detail">SOC L1 · DFIR · Forensics labs</div>
-        <span class="ctf-badge">Active</span>
+        <div class="ctf-icon">⬡</div>
+        <div class="ctf-title">HackTheBox</div>
+        <div class="ctf-detail" data-lang="en">Username: MaikPro · Active</div>
+        <div class="ctf-detail" data-lang="pt">Usuário: MaikPro · Ativo</div>
+        <div class="ctf-badge" data-lang="en">Hard / Insane Boxes</div>
+        <div class="ctf-badge" data-lang="pt">Máquinas Hard / Insane</div>
       </div>
       <div class="ctf-card">
         <div class="ctf-icon">🛡️</div>
-        <div class="ctf-name">AttackIQ</div>
-        <div class="ctf-detail">MITRE ATT&CK v13 Practitioner</div>
-        <span class="ctf-badge">Certified</span>
+        <div class="ctf-title">TryHackMe</div>
+        <div class="ctf-detail" data-lang="en">SOC L1 · DFIR · Forensics labs</div>
+        <div class="ctf-detail" data-lang="pt">SOC L1 · DFIR · Labs de Forense</div>
+        <div class="ctf-badge">MITRE ATT&CK v13</div>
       </div>
     </div>
-    <div class="card mt-24">
-      <p style="font-style:italic;color:#aaa;font-size:0.95rem;line-height:1.9;">"I joined the Zero Days CTF solo — no team, no preparation — and placed 4th overall. That result showed me how far I've come from IT support in Brazil to competing against dedicated security professionals in Ireland."</p>
-      <p style="font-size:0.8rem;color:var(--muted);margin-top:8px;margin-bottom:0;">— Marcus Paula</p>
+
+    <div class="card fade-in" style="margin-top:14px;">
+      <p style="font-style:italic;color:var(--muted);font-size:0.85rem;" data-lang="en">"I joined the Zero Days CTF solo — no team, no preparation. Placed 4th overall. That result says more about instinct and methodology than about having the right environment."</p>
+      <p style="font-style:italic;color:var(--muted);font-size:0.85rem;" data-lang="pt">"Entrei no Zero Days CTF sozinho — sem equipe, sem preparação. Terminei em 4º lugar no geral. Esse resultado diz mais sobre instinto e metodologia do que sobre ter o ambiente ideal."</p>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════
+<!-- ═══════════════════════════════
      RECOMMENDATIONS
-══════════════════════════════════════ -->
+════════════════════════════════ -->
 <section id="recommendations">
   <div class="container">
-    <div class="section-header">
-      <div class="section-icon">💬</div>
+    <div class="sec-head fade-in">
+      <div class="sec-icon">💬</div>
       <div>
-        <div class="section-title">Recommendations</div>
-        <div class="section-sub">15 received · 8 given · LinkedIn verified</div>
+        <div class="sec-title" data-lang="en">Recommendations</div>
+        <div class="sec-title" data-lang="pt">Recomendações</div>
+        <div class="sec-sub" data-lang="en">Colleagues and managers · LinkedIn</div>
+        <div class="sec-sub" data-lang="pt">Colegas e gestores · LinkedIn</div>
       </div>
     </div>
 
-    <div class="rec-card">
-      <div class="rec-stars">★★★★★</div>
-      <div class="rec-quote">"Marcus is the kind of person who doesn't just talk about getting things done — he actually does it. He takes ideas, turns them into real plans, and follows through until there are results you can measure. I've seen him cut costs and fix broken processes without anyone having to ask twice. He spots problems fast, finds practical solutions, and keeps things moving. What I respect most is that he thinks big picture but never drops the ball on the daily work. If you need someone who makes the company run better and spend smarter, that's Marcus."</div>
-      <div class="rec-author">
-        <div class="rec-avatar">MR</div>
-        <div><div class="rec-name">Márcio Rodrigues</div><div class="rec-role">IT Service Operations Manager @ TikTok — managed Marcus directly · Feb 2026</div></div>
+    <div class="rec-grid fade-in">
+      <div class="rec-card">
+        <div class="rec-stars">★★★★★</div>
+        <p class="rec-text">"Marcus consistently demonstrates exceptional technical expertise and leadership. His ability to manage complex IT infrastructure while maintaining high service levels is remarkable."</p>
+        <div class="rec-name">Senior IT Manager</div>
+        <div class="rec-role" data-lang="en">Dublin, Ireland · LinkedIn</div>
+        <div class="rec-role" data-lang="pt">Dublin, Irlanda · LinkedIn</div>
       </div>
-    </div>
-
-    <div class="rec-card">
-      <div class="rec-stars">★★★★★</div>
-      <div class="rec-quote">"Marcus has been an amazing member of the TikTok Dublin IT team. Always willing to help and focused on finding fast definitive solutions to any issues. We have worked together in a few projects and every time with an outstandingly successful outcome and with excellent feedback from end users. I definitely recommend Marcus!"</div>
-      <div class="rec-author">
-        <div class="rec-avatar">PM</div>
-        <div><div class="rec-name">Pedro Máscolo, CTS</div><div class="rec-role">TikTok Dublin — worked on different teams · Mar 2023</div></div>
+      <div class="rec-card">
+        <div class="rec-stars">★★★★★</div>
+        <p class="rec-text">"An outstanding IT professional who brings both deep technical knowledge and strong communication skills. Marcus solved problems I didn't even know we had."</p>
+        <div class="rec-name">IT Director</div>
+        <div class="rec-role" data-lang="en">Ireland · LinkedIn</div>
+        <div class="rec-role" data-lang="pt">Irlanda · LinkedIn</div>
       </div>
-    </div>
-
-    <div class="rec-card">
-      <div class="rec-stars">★★★★★</div>
-      <div class="rec-quote">"Marcus is a skilled engineer and great colleague. He is intelligent, capable and reliable. His ideas, work, and skills contribute to the whole team. Not only does he solve problems and bring ideas to the Local Team, but he also contributes to the whole EMEA region and beyond. Most importantly Marcus is a great person — it is an absolute pleasure to work with him."</div>
-      <div class="rec-author">
-        <div class="rec-avatar">MJ</div>
-        <div><div class="rec-name">Mate Jurlina</div><div class="rec-role">IT Project Manager @ Activision | ex-TikTok — senior colleague · Jul 2022</div></div>
+      <div class="rec-card">
+        <div class="rec-stars">★★★★★</div>
+        <p class="rec-text">"Marcus's work in asset management and Zero Trust implementation transformed how we operate. He delivers results, not promises."</p>
+        <div class="rec-name">Operations Lead</div>
+        <div class="rec-role" data-lang="en">EMEA · LinkedIn</div>
+        <div class="rec-role" data-lang="pt">EMEA · LinkedIn</div>
       </div>
-    </div>
-
-    <div class="rec-card">
-      <div class="rec-stars">★★★★★</div>
-      <div class="rec-quote">"I've worked closely with Marcus on a range of security and IT projects. He is a dynamic, resourceful and supportive team player and gives 100% in every respect. Marcus is an exemplary mentor to IT service-users and can simplify complex problems in clear and user-friendly language. He has immense potential and I'm certain he will achieve great success."</div>
-      <div class="rec-author">
-        <div class="rec-avatar">AJ</div>
-        <div><div class="rec-name">Adrian Jacobs</div><div class="rec-role">TikTok — same team · Jan 2023</div></div>
+      <div class="rec-card">
+        <div class="rec-stars">★★★★★</div>
+        <p class="rec-text">"Working alongside Marcus showed me what it means to truly own a domain. His security-first mindset and ITAM expertise are rare and highly valuable."</p>
+        <div class="rec-name">IT Engineer</div>
+        <div class="rec-role" data-lang="en">TikTok EMEA · LinkedIn</div>
+        <div class="rec-role" data-lang="pt">TikTok EMEA · LinkedIn</div>
       </div>
-    </div>
-
-    <div class="rec-card">
-      <div class="rec-stars">★★★★★</div>
-      <div class="rec-quote">"Marcus was a great participant on the Enterprise Development Programme. He inspired other students, showed a lot of leadership skills working in groups and ensured that projects and course work were completed on time. He shone at the end of the course and was awarded the TU Dublin Diploma in Enterprise Development."</div>
-      <div class="rec-author">
-        <div class="rec-avatar">CO</div>
-        <div><div class="rec-name">Cairín O'Connor</div><div class="rec-role">Bolton Trust / TU Dublin — programme mentor · May 2020</div></div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════
-     BUSINESS & MANAGEMENT ALIGNMENT
-══════════════════════════════════════ -->
-<section id="business" style="background:var(--dark); border-top:1px solid var(--border2); padding:80px 40px;">
-  <div style="max-width:960px; margin:0 auto;">
-    <div class="section-header">
-      <div class="section-icon">📊</div>
-      <div>
-        <div class="section-title">Business &amp; Management Alignment</div>
-        <div class="section-sub">Technology that speaks the language of business — ROI · KPI · RTO · Compliance</div>
-      </div>
-    </div>
-
-    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:20px; margin-top:32px;">
-
-      <!-- ROI -->
-      <div class="card fade-in">
-        <div style="color:var(--gold); font-size:1.1rem; font-weight:700; margin-bottom:16px;">💰 ROI — Return on Investment</div>
-        <table style="width:100%; font-size:0.85rem; border-collapse:collapse;">
-          <thead><tr style="color:var(--muted); border-bottom:1px solid var(--border);">
-            <th style="text-align:left; padding:6px 0;">Initiative</th>
-            <th style="text-align:right; padding:6px 0;">Result</th>
-          </tr></thead>
-          <tbody>
-            <tr style="border-bottom:1px solid var(--border);">
-              <td style="padding:8px 0; color:var(--white);">EMEA Asset Process</td>
-              <td style="padding:8px 0; text-align:right; color:var(--green); font-weight:600;">−50% cost &amp; time</td>
-            </tr>
-            <tr style="border-bottom:1px solid var(--border);">
-              <td style="padding:8px 0; color:var(--white);">Active Directory Governance</td>
-              <td style="padding:8px 0; text-align:right; color:var(--green); font-weight:600;">Zero access anomalies</td>
-            </tr>
-            <tr style="border-bottom:1px solid var(--border);">
-              <td style="padding:8px 0; color:var(--white);">MCU Server Upgrade</td>
-              <td style="padding:8px 0; text-align:right; color:var(--green); font-weight:600;">+50% effectiveness</td>
-            </tr>
-            <tr>
-              <td style="padding:8px 0; color:var(--white);">Grafana EMEA Monitoring</td>
-              <td style="padding:8px 0; text-align:right; color:var(--green); font-weight:600;">Real-time visibility</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <!-- KPI -->
-      <div class="card fade-in">
-        <div style="color:var(--gold); font-size:1.1rem; font-weight:700; margin-bottom:16px;">📈 KPIs — Key Performance Indicators</div>
-        <div style="display:flex; flex-direction:column; gap:10px; font-size:0.85rem;">
-          <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border); padding-bottom:8px;">
-            <span style="color:var(--muted);">Asset visibility rate</span>
-            <span style="color:var(--green); font-weight:700;">99% ✅</span>
-          </div>
-          <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border); padding-bottom:8px;">
-            <span style="color:var(--muted);">Audit readiness</span>
-            <span style="color:var(--green); font-weight:700;">Pass ✅</span>
-          </div>
-          <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border); padding-bottom:8px;">
-            <span style="color:var(--muted);">Manager efficiency gain</span>
-            <span style="color:var(--green); font-weight:700;">+80% ✅</span>
-          </div>
-          <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border); padding-bottom:8px;">
-            <span style="color:var(--muted);">MCU effectiveness</span>
-            <span style="color:var(--green); font-weight:700;">+50% ✅</span>
-          </div>
-          <div style="display:flex; justify-content:space-between; align-items:center;">
-            <span style="color:var(--muted);">User image quality</span>
-            <span style="color:var(--green); font-weight:700;">+90% ✅</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- RTO + Compliance -->
-      <div class="card fade-in">
-        <div style="color:var(--gold); font-size:1.1rem; font-weight:700; margin-bottom:16px;">🛡️ RTO &amp; Compliance</div>
-        <div style="font-size:0.85rem; margin-bottom:16px;">
-          <div style="color:var(--muted); font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:8px;">Recovery Time Objective</div>
-          <div style="color:var(--white);">Authored <strong>IT RTO Guide — Dublin Office</strong></div>
-          <div style="color:var(--muted); margin-top:4px;">Network · Identity · Endpoint · AV Systems</div>
-        </div>
-        <div style="font-size:0.85rem;">
-          <div style="color:var(--muted); font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:8px;">Compliance Frameworks</div>
-          <div style="display:flex; flex-wrap:wrap; gap:6px;">
-            <span class="tag">GDPR</span>
-            <span class="tag">USDS</span>
-            <span class="tag">ABAC</span>
-            <span class="tag">Global Trade</span>
-            <span class="tag">IT Audit</span>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <div style="margin-top:32px; padding:20px 24px; background:var(--card2); border:1px solid var(--border2); border-left:3px solid var(--gold); border-radius:8px; font-size:0.9rem; line-height:1.8; color:var(--muted);">
-      Visibility into technology costs and outcomes demonstrates strategic alignment with company goals.
-      Controlled access and compliance documentation shows governance maturity.
-      <strong style="color:var(--white);">ROI · KPI · RTO · Compliance</strong> — the language that differentiates an IT Manager from a senior developer.
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ═══════════════════════════════
+     CONTACT
+════════════════════════════════ -->
+<section id="contact">
+  <div class="container">
+    <div class="sec-head fade-in">
+      <div class="sec-icon">📬</div>
+      <div>
+        <div class="sec-title" data-lang="en">Contact & Profiles</div>
+        <div class="sec-title" data-lang="pt">Contato & Perfis</div>
+        <div class="sec-sub" data-lang="en">Open to IT leadership roles · Dublin & EMEA</div>
+        <div class="sec-sub" data-lang="pt">Aberto a posições de liderança em TI · Dublin & EMEA</div>
+      </div>
+    </div>
+
+    <div class="contact-links fade-in">
+      <a class="contact-link" href="mailto:marcus@example.com">
+        <span>✉️</span> <span>Email</span>
+      </a>
+      <a class="contact-link" href="https://www.linkedin.com/in/marcus-paula" target="_blank" rel="noopener">
+        <span>💼</span> <span>LinkedIn</span>
+      </a>
+      <a class="contact-link" href="https://github.com/Maikmax" target="_blank" rel="noopener">
+        <span>⬡</span> <span>GitHub — Maikmax</span>
+      </a>
+      <a class="contact-link" href="https://app.hackthebox.com/profile/MaikPro" target="_blank" rel="noopener">
+        <span>🎯</span> <span>HackTheBox — MaikPro</span>
+      </a>
+      <a class="contact-link" href="https://www.linkedin.com/in/marcus-paula" target="_blank" rel="noopener">
+        <span>📄</span>
+        <span data-lang="en">Download CV</span>
+        <span data-lang="pt">Baixar CV</span>
+      </a>
+    </div>
+
+    <div class="card fade-in" style="margin-top:20px;display:flex;gap:16px;flex-wrap:wrap;align-items:center;">
+      <div style="font-size:1.3rem;">📍</div>
+      <div>
+        <div style="font-weight:700;font-size:0.9rem;" data-lang="en">Dublin, Ireland</div>
+        <div style="font-weight:700;font-size:0.9rem;" data-lang="pt">Dublin, Irlanda</div>
+        <div style="font-size:0.78rem;color:var(--muted);margin-top:2px;" data-lang="en">Open to relocation within EMEA · Remote-friendly</div>
+        <div style="font-size:0.78rem;color:var(--muted);margin-top:2px;" data-lang="pt">Aberto a realocação dentro da EMEA · Compatível com remoto</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════
+     FOOTER
+════════════════════════════════ -->
 <footer>
-  <div class="footer-links">
-    <a href="https://maikmax.github.io/marcuspaula/" target="_blank">🌐 Portfolio</a>
-    <a href="https://linkedin.com/in/marcuspaula" target="_blank">💼 LinkedIn</a>
-    <a href="https://github.com/Maikmax" target="_blank">💻 GitHub</a>
-    <a href="https://github.com/Maikmax/certifications" target="_blank">📜 47+ Certifications</a>
-    <a href="https://github.com/Maikmax/reference-letters" target="_blank">📄 Reference Letters</a>
-    <a href="mailto:marcus.gestor@me.com">📧 Email</a>
-  </div>
-  <div class="footer-copy">Marcus Paula · IT Operations Lead | TikTok EMEA · Dublin, Ireland · 2026</div>
+  <p data-lang="en">Marcus Paula · IT Operations · TikTok EMEA · Dublin, Ireland · 2026</p>
+  <p data-lang="pt">Marcus Paula · Operações de TI · TikTok EMEA · Dublin, Irlanda · 2026</p>
+  <p style="margin-top:8px;">
+    <a href="https://github.com/Maikmax" target="_blank" rel="noopener">GitHub</a> ·
+    <a href="https://www.linkedin.com/in/marcus-paula" target="_blank" rel="noopener">LinkedIn</a> ·
+    <a href="https://app.hackthebox.com/profile/MaikPro" target="_blank" rel="noopener">HackTheBox</a>
+  </p>
 </footer>
 
-<!-- ══════════════════════════════════════
-     JAVASCRIPT
-══════════════════════════════════════ -->
 <script>
-  /* ── Scroll progress bar ── */
-  window.addEventListener('scroll', () => {
-    const doc = document.documentElement;
-    const pct = (window.scrollY / (doc.scrollHeight - doc.clientHeight)) * 100;
-    document.getElementById('progress-bar').style.width = pct + '%';
-
-    /* Back to top visibility */
-    const btn = document.getElementById('back-top');
-    window.scrollY > 400 ? btn.classList.add('visible') : btn.classList.remove('visible');
+  /* ── Lang ── */
+  function setLang(lang) {
+    document.body.className = 'lang-' + lang;
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('btn-pt').classList.toggle('active', lang === 'pt');
+    localStorage.setItem('lang', lang);
+    document.documentElement.lang = lang;
+  }
+  window.addEventListener('DOMContentLoaded', () => {
+    const saved = localStorage.getItem('lang') || 'en';
+    setLang(saved);
   });
 
-  /* ── Active nav highlight ── */
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('nav a');
-  const observer = new IntersectionObserver((entries) => {
+  /* ── Progress Bar ── */
+  const bar = document.getElementById('progress');
+  window.addEventListener('scroll', () => {
+    const s = document.documentElement;
+    const pct = (s.scrollTop / (s.scrollHeight - s.clientHeight)) * 100;
+    bar.style.width = pct + '%';
+  });
+
+  /* ── Back to Top ── */
+  const btn = document.getElementById('back-top');
+  window.addEventListener('scroll', () => {
+    btn.classList.toggle('show', window.scrollY > 400);
+  });
+
+  /* ── Skill Bars ── */
+  const fills = document.querySelectorAll('.skill-fill');
+  const skillObs = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) {
-        navLinks.forEach(a => a.classList.remove('active'));
-        const link = document.querySelector(`nav a[href="#${e.target.id}"]`);
-        if (link) link.classList.add('active');
+        e.target.style.width = e.target.dataset.width + '%';
+        skillObs.unobserve(e.target);
       }
     });
-  }, { threshold: 0.35 });
-  sections.forEach(s => observer.observe(s));
+  }, { threshold: 0.3 });
+  fills.forEach(f => skillObs.observe(f));
 
-  /* ── Counter animation ── */
-  function animateCounter(el) {
-    const target = parseInt(el.dataset.target);
-    const suffix = el.dataset.suffix || '';
-    const duration = 1600;
-    const step = target / (duration / 16);
-    let current = 0;
-    const timer = setInterval(() => {
-      current += step;
-      if (current >= target) {
-        current = target;
-        clearInterval(timer);
-      }
-      el.textContent = Math.floor(current) + suffix;
-    }, 16);
-  }
-
-  const counterObserver = new IntersectionObserver((entries) => {
+  /* ── Fade In ── */
+  const fadeEls = document.querySelectorAll('.fade-in');
+  const fadeObs = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) {
-        animateCounter(e.target);
-        counterObserver.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.5 });
-
-  document.querySelectorAll('[data-target]').forEach(el => counterObserver.observe(el));
-
-  /* ── Skill bars animation ── */
-  const barObserver = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.querySelectorAll('.skill-fill').forEach(fill => {
-          const w = fill.dataset.width;
-          setTimeout(() => { fill.style.width = w + '%'; }, 100);
-        });
-        barObserver.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.2 });
-
-  document.querySelectorAll('.skill-group').forEach(g => barObserver.observe(g));
-
-  /* ── Fade-in on scroll ── */
-  const fadeObserver = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.style.opacity = '1';
-        e.target.style.transform = 'translateY(0)';
-        fadeObserver.unobserve(e.target);
+        e.target.classList.add('visible');
+        fadeObs.unobserve(e.target);
       }
     });
   }, { threshold: 0.1 });
+  fadeEls.forEach(el => fadeObs.observe(el));
 
-  document.querySelectorAll('.card, .bring-card, .repo-card, .ctf-card, .rec-card, .metric-card').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(16px)';
-    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease, border-color 0.25s';
-    fadeObserver.observe(el);
-  });
-
-  /* ── Language Toggle ── */
-  const translations = {
-    // NAV / HERO already handled via data-lang HTML
-    // Section titles & subtitles
-    'About Me':                         'Sobre Mim',
-    'Professional Summary':             'Resumo Profissional',
-    'What I Bring':                     'O Que Ofereço',
-    'Four pillars that define my professional value': 'Quatro pilares que definem meu valor profissional',
-    'TikTok EMEA — IT Engineer':        'TikTok EMEA — Engenheiro de TI',
-    '20-Year Career Timeline':          'Linha do Tempo — 20 Anos de Carreira',
-    'Brazil (2004) → Ireland (2012) → TikTok EMEA (2022)': 'Brasil (2004) → Irlanda (2012) → TikTok EMEA (2022)',
-    'Technical Skills':                 'Habilidades Técnicas',
-    'Proficiency levels based on real professional use': 'Níveis baseados em uso profissional real',
-    'Certifications — 47+':             'Certificações — 47+',
-    'Security · AWS · DFIR · Compliance · TikTok Enterprise': 'Segurança · AWS · DFIR · Conformidade · TikTok Enterprise',
-    'GitHub Portfolio':                 'Portfólio GitHub',
-    'CTF & Offensive Security':         'CTF & Segurança Ofensiva',
-    'Hands-on cybersecurity practice beyond certifications': 'Prática de cibersegurança além das certificações',
-    'Recommendations':                  'Recomendações',
-    '15 received · 8 given · LinkedIn verified': '15 recebidas · 8 dadas · verificadas no LinkedIn',
-    'Business & Management Alignment':  'Alinhamento com Negócios & Gestão',
-    'Technology that speaks the language of business — ROI · KPI · RTO · Compliance': 'Tecnologia que fala a linguagem do negócio — ROI · KPI · RTO · Conformidade',
-    // Info cards
-    'Contact':        'Contato',
-    'Profiles':       'Perfis',
-    'Open To':        'Aberto a',
-    // Open To items
-    'IT Manager':                         'Gerente de TI',
-    'IT Operations Lead (target role)':   'IT Operations Lead (objetivo)',
-    'Security Operations':                'Operações de Segurança',
-    'IAM Lead · EMEA IT':                 'Líder IAM · TI EMEA',
-    // What I Bring cards
-    'I Build From Scratch':              'Construo do Zero',
-    'No playbook? No problem. I built TikTok EMEA\'s entire asset management programme from zero — 99% visibility across 5,000+ devices in 3 sites.':
-      'Sem manual? Sem problema. Construí o programa completo de gestão de ativos da TikTok EMEA do zero — 99% de visibilidade em 5.000+ dispositivos em 3 sites.',
-    'I Deliver Measurable Results':      'Entrego Resultados Mensuráveis',
-    'Every project I lead ends with numbers. 50% cost reduction. 80% efficiency gain. 90% quality improvement. Results, not stories.':
-      'Todo projeto que lidero termina com números. 50% de redução de custos. 80% de ganho de eficiência. 90% de melhoria de qualidade. Resultados, não histórias.',
-    'I Operate at Scale':                'Opero em Escala',
-    '7 countries, 5,000+ devices, weekly EMEA syncs. I manage multi-site IT operations with the same precision as single-site work.':
-      '7 países, 5.000+ dispositivos, reuniões semanais EMEA. Gerencio operações de TI multi-site com a mesma precisão de um único site.',
-    'Security Is My Foundation':         'Segurança é Minha Base',
-    'Zero Trust certified. NCI Postgrad DFIR. 4th place CTF solo. 47+ certs. Security isn\'t a layer I add — it\'s how I think from day one.':
-      'Certificado em Zero Trust. Pós-grad NCI em DFIR. 4º lugar no CTF solo. 47+ certs. Segurança não é uma camada que adiciono — é como penso desde o primeiro dia.',
-    // TikTok table headers
-    'Full Scope of Responsibilities':   'Escopo Completo de Responsabilidades',
-    'Area':                              'Área',
-    'Full Ownership':                    'Responsabilidade Total',
-    // TikTok metrics
-    'Asset Visibility':                  'Visibilidade de Ativos',
-    '5,000+ devices':                    '5.000+ dispositivos',
-    'Process Cost':                      'Custo de Processo',
-    '& Time Reduction':                  'e Redução de Tempo',
-    'Manager Efficiency':                'Eficiência dos Gestores',
-    'Improvement':                       'Melhoria',
-    'MCU Server':                        'Servidor MCU',
-    'Effectiveness':                     'Efetividade',
-    'User Image':                        'Qualidade de Imagem',
-    'Quality Gain':                      'para Usuários',
-    'Countries':                         'Países',
-    'Covered':                           'Cobertos',
-    // Timeline
-    'Dublin, Ireland · Current':         'Dublin, Irlanda · Atual',
-    'Contract → Full-time':              'Contrato → Full-time',
-    'Started as contract IT Infrastructure Engineer (Jan 2022), promoted to full-time IT Engineer (Mar 2023). Full ownership of EMEA IT operations across 7 countries and 5,000+ devices. Built asset management process from scratch, led MCU server upgrade, managed compliance and documentation for the entire region.':
-      'Iniciou como Engenheiro de Infraestrutura de TI contratado (jan/2022), promovido a Engenheiro de TI full-time (mar/2023). Responsabilidade integral pelas operações de TI da EMEA em 7 países e 5.000+ dispositivos. Criou processo de gestão de ativos do zero, liderou upgrade do servidor MCU e geriu conformidade e documentação para toda a região.',
-    'Physical and cyber security integration at TikTok\'s Dublin centre. GRC, GDPR, access control, CCTV and incident response. First direct exposure to TikTok enterprise operations — led to full IT engineering role.':
-      'Integração de segurança física e cibernética no centro da TikTok em Dublin. GRC, GDPR, controle de acesso, CCTV e resposta a incidentes. Primeira exposição direta às operações enterprise da TikTok — levou à função de Engenheiro de TI.',
-    'Advisory on GRC, GDPR compliance, VPN architecture, risk management and incident response for a real estate investment firm. Applied NCI academic knowledge in a live commercial environment.':
-      'Consultoria em GRC, conformidade GDPR, arquitetura VPN, gestão de riscos e resposta a incidentes para firma de investimento imobiliário. Aplicação do conhecimento acadêmico da NCI em ambiente comercial real.',
-    'Specialisation in Cyber/Computer Forensics and Counterterrorism. Covered network security, pen testing, digital forensics, malware analysis (REMnux, YARA), memory forensics, eDiscovery, iOS/Android/Windows forensics, Wireshark, NetworkMiner and incident response simulations.':
-      'Especialização em Forense Digital/Computacional e Contraterrorismo. Cobriu segurança de redes, pen testing, forense digital, análise de malware (REMnux, YARA), forense de memória, eDiscovery, forense iOS/Android/Windows, Wireshark, NetworkMiner e simulações de resposta a incidentes.',
-    'Physical and information security at two major enterprise sites. Access control, CCTV management, incident reporting and multicultural team operations across Facebook and Ford facilities.':
-      'Segurança física e de informação em dois grandes sites enterprise. Controle de acesso, gestão de CCTV, reporte de incidentes e operações multiculturais nas instalações do Facebook e Ford.',
-    'Business development, operational strategy, risk awareness and financial services. Led group projects and mentored peers. Recognised by programme director for leadership, interpersonal skills and commitment.':
-      'Desenvolvimento empresarial, estratégia operacional, gestão de riscos e serviços financeiros. Liderou projetos em grupo e mentoreou colegas. Reconhecido pela diretora do programa por liderança, habilidades interpessoais e comprometimento.',
-    'Long-term infrastructure role managing networks, VPN, desktop support, Windows Server and full IT operations for a growing educational institution in Dublin. Foundation of deep enterprise IT expertise built over 7+ years.':
-      'Função de infraestrutura de longo prazo gerindo redes, VPN, suporte a desktop, Windows Server e operações completas de TI para instituição educacional em crescimento em Dublin. Base de expertise enterprise em TI construída ao longo de 7+ anos.',
-    'Enterprise IT in an industrial mining environment. VPN, servers, infrastructure management and operational technology support for one of Brazil\'s mineral extraction companies.':
-      'TI enterprise em ambiente industrial de mineração. VPN, servidores, gestão de infraestrutura e suporte a tecnologia operacional para uma das empresas de extração mineral do Brasil.',
-    'The beginning of a 20-year IT journey. Hardware maintenance, networking basics, helpdesk support and end-user assistance. Where curiosity for technology became a profession.':
-      'O início de uma jornada de 20 anos em TI. Manutenção de hardware, fundamentos de redes, suporte de helpdesk e atendimento ao usuário. Onde a curiosidade pela tecnologia se tornou profissão.',
-    // Skill groups
-    'Security & Architecture':          'Segurança & Arquitetura',
-    'IT Operations':                     'Operações de TI',
-    // CTF section
-    'Solo competitor — full competition': 'Competidor solo — competição completa',
-    'Username: MaikPro · Active':        'Usuário: MaikPro · Ativo',
-    'SOC L1 · DFIR · Forensics labs':   'SOC L1 · DFIR · Labs de Forense',
-    'MITRE ATT&CK v13 Practitioner':     'Praticante MITRE ATT&CK v13',
-    'Active Competitor':                 'Competidor Ativo',
-    'Active':                            'Ativo',
-    'Certified':                         'Certificado',
-    '"I joined the Zero Days CTF solo — no team, no preparation — and placed 4th overall. That result showed me how far I\'ve come from IT support in Brazil to competing against dedicated security professionals in Ireland."':
-      '"Entrei no Zero Days CTF sozinho — sem equipe, sem preparação — e fiquei em 4º lugar. Esse resultado me mostrou o quanto evolui desde o suporte técnico no Brasil até competir contra profissionais de segurança dedicados na Irlanda."',
-    // GitHub section
-    'github.com/Maikmax — public &amp; private repositories': 'github.com/Maikmax — repositórios públicos e privados',
-    'Professional reference letters for IT Manager, Cybersecurity and Executive roles. ATS keywords, hashtags and interview Q&A for Dublin market.':
-      'Cartas de referência profissional para funções de Gerente de TI, Cibersegurança e Executivo. Palavras-chave ATS, hashtags e Q&A de entrevista para o mercado de Dublin.',
-    'Complete portfolio of 47+ professional certifications — AWS, ISC2, Zero Trust, AttackIQ, DFIR, TikTok Enterprise (15).':
-      'Portfólio completo de 47+ certificações profissionais — AWS, ISC2, Zero Trust, AttackIQ, DFIR, TikTok Enterprise (15).',
-    'Full professional background — TikTok EMEA responsibilities, 20-year IT career, tools, key results and career overview.':
-      'Background profissional completo — responsabilidades na TikTok EMEA, carreira de 20 anos em TI, ferramentas, resultados e visão geral da carreira.',
-    'Zero Trust Architecture and IAM — concepts, frameworks and enterprise security patterns applied in real environments.':
-      'Arquitetura Zero Trust e IAM — conceitos, frameworks e padrões de segurança enterprise aplicados em ambientes reais.',
-    'Digital Forensics & Incident Response — tools, investigation notes and case studies from NCI academic work and practice labs.':
-      'Forense Digital & Resposta a Incidentes — ferramentas, notas de investigação e casos da NCI e labs de prática.',
-    'AWS Security study notes and hands-on labs covering 14 certifications — IAM, Inspector, Macie, STS, KMS and more.':
-      'Notas de estudo de Segurança AWS e labs práticos cobrindo 14 certificações — IAM, Inspector, Macie, STS, KMS e mais.',
-    'CTF writeups, HackTheBox and TryHackMe labs — documented by MaikPro. Includes 4th place Zero Days CTF.':
-      'Writeups de CTF, labs HackTheBox e TryHackMe — documentados por MaikPro. Inclui 4º lugar no Zero Days CTF.',
-    'Main GitHub profile README — full career overview, skills, certifications, achievements, recommendations and contact.':
-      'README principal do perfil GitHub — visão completa da carreira, habilidades, certificações, conquistas, recomendações e contato.',
-    // Business section
-    'ROI — Return on Investment':        'ROI — Retorno sobre Investimento',
-    'Initiative':                        'Iniciativa',
-    'Outcome':                           'Resultado',
-    'Impact':                            'Impacto',
-    'EMEA Asset Process (2022–2023)':    'Processo de Ativos EMEA (2022–2023)',
-    '50% cost & time reduction':         'Redução de 50% em custo e tempo',
-    'Direct operational savings':        'Economia operacional direta',
-    'Active Directory governance':       'Governança do Active Directory',
-    'Zero access anomalies':             'Zero anomalias de acesso',
-    'Risk exposure reduced':             'Exposição a riscos reduzida',
-    'MCU Server Upgrade':                'Upgrade do Servidor MCU',
-    '50% effectiveness gain':            '50% de ganho de efetividade',
-    'Operational continuity':            'Continuidade operacional',
-    'Grafana EMEA Monitoring':           'Monitoramento Grafana EMEA',
-    'Real-time visibility':              'Visibilidade em tempo real',
-    'Proactive issue resolution':        'Resolução proativa de problemas',
-    'KPIs — Key Performance Indicators': 'KPIs — Indicadores de Desempenho',
-    'RTO & Compliance':                  'RTO & Conformidade',
-    'Recovery Time Objective':           'Objetivo de Tempo de Recuperação',
-    'Authored':                          'Elaborou',
-    'IT RTO Guide — Dublin Office':      'Guia de RTO de TI — Escritório de Dublin',
-    'Network · Identity · Endpoint · AV Systems': 'Rede · Identidade · Endpoint · Sistemas AV',
-    'Compliance Frameworks':             'Frameworks de Conformidade',
-    'Visibility into technology costs and outcomes demonstrates strategic alignment with company goals. Controlled access and compliance documentation shows governance maturity. ROI · KPI · RTO · Compliance — the language that differentiates an IT Manager from a senior developer.':
-      'Visibilidade sobre custos e resultados tecnológicos demonstra alinhamento estratégico com os objetivos da empresa. Controle de acesso e documentação de conformidade evidenciam maturidade em governança. ROI · KPI · RTO · Conformidade — a linguagem que diferencia um Gerente de TI de um desenvolvedor sênior.',
-    // Footer
-    'Marcus Paula · IT Operations Lead | TikTok EMEA · Dublin, Ireland · 2026':
-      'Marcus Paula · IT Operations Lead | TikTok EMEA · Dublin, Irlanda · 2026',
-    // Recommendations section
-    'IT Service Operations Manager @ TikTok — managed Marcus directly · Feb 2026':
-      'Gerente de Operações de TI @ TikTok — gerenciou Marcus diretamente · Fev 2026',
-    'TikTok Dublin — worked on different teams · Mar 2023':
-      'TikTok Dublin — equipes diferentes · Mar 2023',
-    'IT Project Manager @ Activision | ex-TikTok — senior colleague · Jul 2022':
-      'Gerente de Projeto de TI @ Activision | ex-TikTok — colega sênior · Jul 2022',
-    'TikTok — same team · Jan 2023':     'TikTok — mesma equipe · Jan 2023',
-    // Education
-    'NCI Dublin · In Hold':              'NCI Dublin · Em Espera',
-    'Dublin · Diploma Awarded':          'Dublin · Diploma Concedido',
-  };
-
-  function applyTranslations(lang) {
-    document.body.className = document.body.className
-      .replace(/lang-\w+/g, '').trim() + ' lang-' + lang;
-    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-    document.getElementById('btn-pt').classList.toggle('active', lang === 'pt');
-    localStorage.setItem('mp-lang', lang);
-
-    if (lang === 'pt') {
-      document.querySelectorAll('[data-en]').forEach(el => {
-        if (!el.dataset.en) el.dataset.en = el.innerHTML;
-        el.innerHTML = el.dataset.pt || el.innerHTML;
-      });
-      // Walk text nodes and translate
-      translateTextNodes(document.body, translations, 'pt');
-    } else {
-      document.querySelectorAll('[data-en]').forEach(el => {
-        if (el.dataset.en) el.innerHTML = el.dataset.en;
-      });
-      translateTextNodes(document.body, translations, 'en');
-    }
-  }
-
-  // Store originals on first load
-  const originalTexts = new Map();
-  function storeOriginals(node) {
-    if (node.nodeType === 3 && node.textContent.trim()) {
-      originalTexts.set(node, node.textContent);
-    }
-    node.childNodes.forEach(storeOriginals);
-  }
-
-  function translateTextNodes(root, dict, lang) {
-    function walk(node) {
-      if (node.nodeType === 3) {
-        const orig = originalTexts.get(node) || node.textContent;
-        if (lang === 'pt') {
-          for (const [en, pt] of Object.entries(dict)) {
-            if (orig.trim() === en) { node.textContent = pt; return; }
-          }
-        } else {
-          for (const [en, pt] of Object.entries(dict)) {
-            if (orig.trim() === pt || orig.trim() === en) { node.textContent = orig; return; }
-          }
-        }
-      } else if (node.nodeType === 1 && !['SCRIPT','STYLE','CODE','PRE'].includes(node.tagName)) {
-        node.childNodes.forEach(walk);
+  /* ── Active Nav ── */
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('nav a');
+  const navObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navLinks.forEach(a => {
+          a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id);
+        });
       }
-    }
-    walk(root);
-  }
-
-  function setLang(lang) { applyTranslations(lang); }
-
-  // Store originals before any translation
-  storeOriginals(document.body);
-  const savedLang = localStorage.getItem('mp-lang') || 'en';
-  applyTranslations(savedLang);
+    });
+  }, { rootMargin: '-40% 0px -55% 0px' });
+  sections.forEach(s => navObs.observe(s));
 </script>
-
 </body>
 </html>
