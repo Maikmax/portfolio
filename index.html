@@ -119,7 +119,7 @@
       white-space: nowrap;
       transition: all 0.2s;
     }
-    nav a:hover, nav a.active { color: var(--gold); border-color: var(--gold); }
+    nav a:hover, nav a.active {  border- }
 
     /* ── Hero ── */
     .hero {
@@ -147,13 +147,14 @@
     .hero-inner { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
 
     .avatar {
+      overflow: hidden;
       width: 88px; height: 88px;
       border-radius: 50%;
       background: linear-gradient(135deg, #1a1206, #221808);
       border: 2px solid var(--gold);
       display: flex; align-items: center; justify-content: center;
-      font-size: 1.8rem; font-weight: 800;
-      color: var(--gold);
+      
+      
       margin: 0 auto 24px;
       box-shadow: 0 0 0 5px rgba(201,168,76,0.07), 0 0 36px rgba(201,168,76,0.12);
     }
@@ -213,7 +214,7 @@
     .stat-n {
       display: block;
       font-size: 1.7rem; font-weight: 800;
-      color: var(--gold);
+      
       line-height: 1;
     }
     .stat-l {
@@ -261,7 +262,7 @@
       margin-bottom: 12px;
     }
     .card-title { font-size: 1rem; font-weight: 700; }
-    .card-co { font-size: 0.85rem; color: var(--gold); font-weight: 600; margin-top: 2px; }
+    .card-co { font-size: 0.85rem;  font-weight: 600; margin-top: 2px; }
     .chip {
       font-size: 0.7rem; color: var(--muted);
       background: rgba(255,255,255,0.04);
@@ -315,7 +316,7 @@
     .cert-section { margin-bottom: 28px; }
     .cert-group-title {
       font-size: 0.75rem;
-      color: var(--gold);
+      
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 1px;
@@ -351,7 +352,7 @@
       color: var(--blue); margin-bottom: 6px;
       display: flex; align-items: center; gap: 6px;
     }
-    .repo-name::before { content: '⬡'; font-size: 0.7rem; color: var(--gold); }
+    .repo-name::before { content: '⬡'; font-size: 0.7rem;  }
     .repo-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
 
     /* ── CTF ── */
@@ -396,7 +397,7 @@
       font-weight: 600;
       transition: all 0.2s;
     }
-    .contact-link:hover { border-color: var(--gold); color: var(--gold); }
+    .contact-link:hover { border-  }
     .contact-link span:first-child { font-size: 1rem; }
 
     /* ── Recommendations ── */
@@ -408,7 +409,7 @@
       border-radius: 12px;
       padding: 22px 24px;
     }
-    .rec-stars { color: var(--gold); font-size: 0.8rem; margin-bottom: 10px; letter-spacing: 2px; }
+    .rec-stars {  font-size: 0.8rem; margin-bottom: 10px; letter-spacing: 2px; }
     .rec-text { font-size: 0.82rem; color: var(--muted); line-height: 1.65; font-style: italic; margin-bottom: 14px; }
     .rec-name { font-size: 0.8rem; font-weight: 700; }
     .rec-role { font-size: 0.72rem; color: var(--muted); }
@@ -421,7 +422,7 @@
     }
     footer p { font-size: 0.78rem; color: var(--muted2); }
     footer a { color: var(--muted); text-decoration: none; }
-    footer a:hover { color: var(--gold); }
+    footer a:hover {  }
 
     /* ── Fade in ── */
     .fade-in { opacity: 0; transform: translateY(18px); transition: opacity 0.5s ease, transform 0.5s ease; }
@@ -456,7 +457,7 @@
 ════════════════════════════════ -->
 <div class="hero">
   <div class="hero-inner">
-    <div class="avatar">MP</div>
+    <div class="avatar"><img src="perfil.jpg" alt="Marcus Paula" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"/></div>
     <div class="flags">🇧🇷 🇮🇪</div>
     <h1>Marcus Paula</h1>
     <p class="hero-sub" data-lang="en">IT Operations · TikTok EMEA · Dublin, Ireland</p>
